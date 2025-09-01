@@ -64,7 +64,7 @@
           {{ 'device-profile.name-max-length' | translate }}
         </mat-error>
       </mat-form-field>
-      <tb-rule-chain-autocomplete
+      <!--      <tb-rule-chain-autocomplete
         labelText="device-profile.default-rule-chain"
         formControlName="defaultRuleChainId">
       </tb-rule-chain-autocomplete>
@@ -82,7 +82,7 @@
         formControlName="defaultEdgeRuleChainId"
         [ruleChainType]="edgeRuleChainType">
         <span tb-hint>{{'device-profile.default-edge-rule-chain-hint' | translate}}</span>
-      </tb-rule-chain-autocomplete>
+      </tb-rule-chain-autocomplete>-->
       <tb-ota-package-autocomplete
         [useFullEntityId]="true"
         [showDetailsPageLink]="true"

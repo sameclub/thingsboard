@@ -16,20 +16,23 @@
 
 -->
 <div class="profile-container flex flex-col gap-2">
-  <mat-card appearance="outlined" class="profile-card flex flex-col">
-    <mat-card-title style="margin-bottom: 8px;">
-      <span class="mat-headline-5 card-title" translate>profile.jwt-token</span>
-    </mat-card-title>
-    <div class="flex flex-row items-center justify-between">
-      <div class="token-text">{{ 'profile.token-valid-till' | translate }} <span class="date">{{ jwtTokenExpiration | date: 'yyyy-MM-dd HH:mm:ss' }}</span></div>
-      <button mat-raised-button
-              color="primary"
-              type="button"
-              (click)="copyToken()">
-        <span>{{ 'profile.copy-jwt-token' | translate }}</span>
-      </button>
-    </div>
-  </mat-card>
+  <!--      <mat-expansion-panel class="tb-settings-card" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div translate>security.jwt-token</div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div style="padding-top: 16px;">
+          <label class="tb-title">{{ 'security.token' | translate }}</label>
+          <div class="tb-highlight" style="padding: 12px;">{{ authUser.token }}</div>
+          <label class="tb-title">{{ 'security.refresh-token' | translate }}</label>
+          <div class="tb-highlight" style="padding: 12px;">{{ authUser.refreshToken }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-panel-description class="tb-hint">
+          <span translate>security.jwt-token-info</span>
+        </mat-panel-description>
+      </mat-expansion-panel>-->
   <mat-card appearance="outlined" class="profile-card flex flex-col">
     <div class="change-password" tb-toast toastTarget="changePassword">
       <form #changePasswordForm="ngForm" [formGroup]="changePassword" (ngSubmit)="onChangePassword(changePasswordForm)">

@@ -54,7 +54,7 @@ const routes: Routes = [
       },
       ...profileRoutes,
       ...securityRoutes,
-      ...notificationUserSettingsRoutes
+      // ...notificationUserSettingsRoutes
     ]
   }
 ];

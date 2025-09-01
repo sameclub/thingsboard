@@ -181,7 +181,7 @@ export class PhoneInputComponent implements OnInit, ControlValueAccessor, Valida
     if (this.getExampleNumber) {
       const phoneData = this.getExampleNumber(country, examples);
       this.phonePlaceholder = phoneData.number;
-      this.countryCallingCode = `+${this.enableFlagsSelect ? phoneData.countryCallingCode : ''}`;
+      this.countryCallingCode = `+${phoneData.countryCallingCode}`;
     }
   }
 
@@ -196,7 +196,7 @@ export class PhoneInputComponent implements OnInit, ControlValueAccessor, Valida
   validatePhoneNumber(): ValidatorFn {
     return (c: UntypedFormControl) => {
       const phoneNumber = c.value;
-      if (phoneNumber && this.parsePhoneNumberFromString) {
+      if (phoneNumber && phoneNumber !== this.countryCallingCode && this.parsePhoneNumberFromString) {
         const parsedPhoneNumber = this.parsePhoneNumberFromString(phoneNumber);
         if (!parsedPhoneNumber?.isValid() || !parsedPhoneNumber?.isPossible()) {
           return {

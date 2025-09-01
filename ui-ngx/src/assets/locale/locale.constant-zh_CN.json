@@ -1100,7 +1100,8 @@
         "search": "查找客户",
         "selected-customers": "已选择 { count, plural, =1 {1 个客户} other {# 个客户} }",
         "edges": "客户边缘实例",
-        "manage-edges": "管理边缘"
+        "manage-edges": "管理边缘",
+        "login-disabled": "客户登录已被禁用"
     },
     "css-size": {
         "size-value-required": "尺寸值必填。",

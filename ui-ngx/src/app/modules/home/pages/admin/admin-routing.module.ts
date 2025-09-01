@@ -266,7 +266,7 @@ const routes: Routes = [
           }
         }
       },
-      {
+      /*      {
         path: 'notifications',
         component: SmsProviderComponent,
         canDeactivate: [ConfirmOnExitGuard],
@@ -277,8 +277,8 @@ const routes: Routes = [
             menuId: MenuId.notification_settings
           }
         }
-      },
-      {
+      },*/
+      /*      {
         path: 'queues',
         data: {
           breadcrumb: {
@@ -314,7 +314,7 @@ const routes: Routes = [
             }
           }
         ]
-      },
+      },*/
       {
         path: 'home',
         component: HomeSettingsComponent,

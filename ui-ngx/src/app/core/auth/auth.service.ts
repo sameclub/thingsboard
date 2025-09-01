@@ -537,6 +537,29 @@ export class AuthService {
       authenticatedSubject.next(false);
       authenticatedSubject.complete();
     } else {
+      /* disable customer login */
+      const tokenData = this.jwtHelper.decodeToken(jwtToken);
+      const authority = Authority[tokenData.scopes[0]];
+      if (authority === Authority.CUSTOMER_USER) {
+        AuthService.clearTokenData();
+        if (notify) {
+          this.notifyUnauthenticated();
+        }
+        this.dialog.open(AlertDialogComponent, {
+          disableClose: true,
+          data: {
+            title: this.translate.instant('login.error'),
+            message: this.translate.instant('customer.login-disabled'),
+            ok: this.translate.instant('action.close'),
+            textMode: true
+          }
+        });
+        authenticatedSubject.next(false);
+        authenticatedSubject.complete();
+        return authenticatedSubject;
+      }
+      /* end */
+
       this.updateAndValidateTokens(jwtToken, refreshToken, true);
       if (notify) {
         this.notifyUserLoaded(false);

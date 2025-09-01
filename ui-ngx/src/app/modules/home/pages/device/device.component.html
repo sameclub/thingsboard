@@ -22,6 +22,7 @@
           [class.!hidden]="isEdit || isDetailsPage">
     {{'common.open-details-page' | translate }}
   </button>
+  <!--
   <button mat-raised-button color="primary"
           [disabled]="(isLoading$ | async)"
           (click)="onEntityAction($event, 'makePublic')"
@@ -39,7 +40,7 @@
           (click)="onEntityAction($event, 'unassignFromCustomer')"
           [class.!hidden]="isEdit || (deviceScope !== 'customer' && deviceScope !== 'tenant') || !isAssignedToCustomer(entity)">
     {{ (entity?.customerIsPublic ? 'device.make-private' : 'device.unassign-from-customer') | translate }}
-  </button>
+  </button>-->
   <button mat-raised-button color="primary"
           [disabled]="(isLoading$ | async)"
           (click)="onEntityAction($event, 'manageCredentials')"
@@ -83,6 +84,7 @@
   </div>
 </div>
 <div class="mat-padding flex flex-col">
+  <!--
   <mat-form-field class="mat-block"
                   [class.!hidden]="isEdit || !isAssignedToCustomer(entity)
                               || entity?.customerIsPublic || deviceScope !== 'tenant'">
@@ -93,6 +95,7 @@
        [class.!hidden]="isEdit || !entity?.customerIsPublic || (deviceScope !== 'customer' && deviceScope !== 'tenant')">
     {{ 'device.device-public' | translate }}
   </div>
+-->
   <form [formGroup]="entityForm">
     <fieldset [disabled]="(isLoading$ | async) || !isEdit">
       <mat-form-field class="mat-block">
@@ -140,9 +143,9 @@
       </tb-device-data>
       <div formGroupName="additionalInfo" class="flex flex-col">
         <div class="toggle-group">
-          <mat-slide-toggle formControlName="gateway" style="min-width: 165px">
+          <!--          <mat-slide-toggle formControlName="gateway" style="min-width: 165px">
             {{ 'device.is-gateway' | translate }}
-          </mat-slide-toggle>
+          </mat-slide-toggle>-->
           <mat-slide-toggle *ngIf="entityForm.get('additionalInfo.gateway').value"
                             formControlName="overwriteActivityTime">
             {{ 'device.overwrite-activity-time' | translate }}

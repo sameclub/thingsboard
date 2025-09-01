@@ -727,162 +727,165 @@ const defaultUserMenuMap = new Map<Authority, MenuReference[]>([
     Authority.SYS_ADMIN,
     [
       {id: MenuId.home},
-      {id: MenuId.tenants},
-      {id: MenuId.tenant_profiles},
-      {
-        id: MenuId.resources,
-        pages: [
-          {
-            id: MenuId.widget_library,
-            pages: [
-              {id: MenuId.widget_types},
-              {id: MenuId.widgets_bundles}
-            ]
-          },
-          {id: MenuId.images},
-          {id: MenuId.scada_symbols},
-          {id: MenuId.javascript_library},
-          {id: MenuId.resources_library}
-        ]
-      },
-      {
-        id: MenuId.notifications_center,
-        pages: [
-          {id: MenuId.notification_inbox},
-          {id: MenuId.notification_sent},
-          {id: MenuId.notification_recipients},
-          {id: MenuId.notification_templates},
-          {id: MenuId.notification_rules}
-        ]
-      },
-      {
-        id: MenuId.mobile_center,
-        pages: [
-          {id: MenuId.mobile_bundles},
-          {id: MenuId.mobile_apps},
-          {id: MenuId.mobile_qr_code_widget}
-        ]
-      },
+      // {id: MenuId.tenants},
+      // {id: MenuId.tenant_profiles},
+      // {
+      //   id: MenuId.resources,
+      //   pages: [
+      //     {
+      //       id: MenuId.widget_library,
+      //       pages: [
+      //         {id: MenuId.widget_types},
+      //         {id: MenuId.widgets_bundles}
+      //       ]
+      //     },
+      //     {id: MenuId.images},
+      //     {id: MenuId.scada_symbols},
+      //     {id: MenuId.javascript_library},
+      //     {id: MenuId.resources_library}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.notifications_center,
+      //   pages: [
+      //     {id: MenuId.notification_inbox},
+      //     {id: MenuId.notification_sent},
+      //     {id: MenuId.notification_recipients},
+      //     {id: MenuId.notification_templates},
+      //     {id: MenuId.notification_rules}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.mobile_center,
+      //   pages: [
+      //     {id: MenuId.mobile_bundles},
+      //     {id: MenuId.mobile_apps},
+      //     {id: MenuId.mobile_qr_code_widget}
+      //   ]
+      // },
       {
         id: MenuId.settings,
         pages: [
           {id: MenuId.general},
           {id: MenuId.mail_server},
-          {id: MenuId.notification_settings},
-          {id: MenuId.queues}
-        ]
-      },
-      {
-        id: MenuId.security_settings,
-        pages: [
-          {id: MenuId.security_settings_general},
-          {id: MenuId.two_fa},
-          {
-            id: MenuId.oauth2,
-            pages: [
-              {id: MenuId.domains},
-              {id: MenuId.clients}
-            ]
-          }
+          // {id: MenuId.notification_settings},
+          // {id: MenuId.queues}
         ]
       }
+      // {
+      //   id: MenuId.security_settings,
+      //   pages: [
+      //     {id: MenuId.security_settings_general},
+      //     {id: MenuId.two_fa},
+      //     {
+      //       id: MenuId.oauth2,
+      //       pages: [
+      //         {id: MenuId.domains},
+      //         {id: MenuId.clients}
+      //       ]
+      //     }
+      //   ]
+      // }
     ]
   ],
   [
     Authority.TENANT_ADMIN,
     [
       {id: MenuId.home},
-      {id: MenuId.alarms},
-      {id: MenuId.dashboards},
-      {
-        id: MenuId.entities,
-        pages: [
-          {id: MenuId.devices},
-          {id: MenuId.assets},
-          {id: MenuId.entity_views},
-          {id: MenuId.gateways}
-        ]
-      },
-      {
-        id: MenuId.profiles,
-        pages: [
-          {id: MenuId.device_profiles},
-          {id: MenuId.asset_profiles}
-        ]
-      },
-      {id: MenuId.customers},
-      {id: MenuId.rule_chains},
-      {
-        id: MenuId.edge_management,
-        pages: [
-          {id: MenuId.edges},
-          {id: MenuId.rulechain_templates}
-        ]
-      },
-      {
-        id: MenuId.features,
-        pages: [
-          {id: MenuId.otaUpdates},
-          {id: MenuId.version_control}
-        ]
-      },
-      {
-        id: MenuId.resources,
-        pages: [
-          {
-            id: MenuId.widget_library,
-            pages: [
-              {id: MenuId.widget_types},
-              {id: MenuId.widgets_bundles}
-            ]
-          },
-          {id: MenuId.images},
-          {id: MenuId.scada_symbols},
-          {id: MenuId.javascript_library},
-          {id: MenuId.resources_library}
-        ]
-      },
-      {
-        id: MenuId.notifications_center,
-        pages: [
-          {id: MenuId.notification_inbox},
-          {id: MenuId.notification_sent},
-          {id: MenuId.notification_recipients},
-          {id: MenuId.notification_templates},
-          {id: MenuId.notification_rules}
-        ]
-      },
-      {
-        id: MenuId.mobile_center,
-        pages: [
-          {id: MenuId.mobile_bundles},
-          {id: MenuId.mobile_apps}
-        ]
-      },
-      {id: MenuId.api_usage},
-      {
-        id: MenuId.settings,
-        pages: [
-          {id: MenuId.home_settings},
-          {id: MenuId.notification_settings},
-          {id: MenuId.repository_settings},
-          {id: MenuId.auto_commit_settings},
-          {id: MenuId.trendz_settings},
-          {id: MenuId.ai_models}
-        ]
-      },
-      {
-        id: MenuId.security_settings,
-        pages: [
-          {id: MenuId.audit_log},
-          {
-            id: MenuId.oauth2,
-            pages: [
-              {id: MenuId.clients}
-            ]
-          }
-        ]
-      }
+      // {id: MenuId.alarms},
+      // {id: MenuId.dashboards},
+      {id: MenuId.devices},
+      {id: MenuId.device_profiles},
+      {id: MenuId.otaUpdates},
+      // {
+      //   id: MenuId.entities,
+      //   pages: [
+      //     {id: MenuId.devices},
+      //     {id: MenuId.assets},
+      //     {id: MenuId.entity_views},
+      //     {id: MenuId.gateways}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.profiles,
+      //   pages: [
+      //     {id: MenuId.device_profiles},
+      //     {id: MenuId.asset_profiles}
+      //   ]
+      // },
+      // {id: MenuId.customers},
+      // {id: MenuId.rule_chains},
+      // {
+      //   id: MenuId.edge_management,
+      //   pages: [
+      //     {id: MenuId.edges},
+      //     {id: MenuId.rulechain_templates}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.features,
+      //   pages: [
+      //     {id: MenuId.otaUpdates},
+      //     {id: MenuId.version_control}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.resources,
+      //   pages: [
+      //     {
+      //       id: MenuId.widget_library,
+      //       pages: [
+      //         {id: MenuId.widget_types},
+      //         {id: MenuId.widgets_bundles}
+      //       ]
+      //     },
+      //     {id: MenuId.images},
+      //     {id: MenuId.scada_symbols},
+      //     {id: MenuId.javascript_library},
+      //     {id: MenuId.resources_library}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.notifications_center,
+      //   pages: [
+      //     {id: MenuId.notification_inbox},
+      //     {id: MenuId.notification_sent},
+      //     {id: MenuId.notification_recipients},
+      //     {id: MenuId.notification_templates},
+      //     {id: MenuId.notification_rules}
+      //   ]
+      // },
+      // {
+      //   id: MenuId.mobile_center,
+      //   pages: [
+      //     {id: MenuId.mobile_bundles},
+      //     {id: MenuId.mobile_apps}
+      //   ]
+      // },
+      // {id: MenuId.api_usage}
+      // {
+      //   id: MenuId.settings,
+      //   pages: [
+      //     {id: MenuId.home_settings},
+      //     {id: MenuId.notification_settings},
+      //     {id: MenuId.repository_settings},
+      //     {id: MenuId.auto_commit_settings},
+      //     {id: MenuId.trendz_settings},
+      //     {id: MenuId.ai_models}
+      //   ]
+      // }
+      // {
+      //   id: MenuId.security_settings,
+      //   pages: [
+      //     {id: MenuId.audit_log},
+      //     {
+      //       id: MenuId.oauth2,
+      //       pages: [
+      //         {id: MenuId.clients}
+      //       ]
+      //     }
+      //   ]
+      // }
     ]
   ],
   [

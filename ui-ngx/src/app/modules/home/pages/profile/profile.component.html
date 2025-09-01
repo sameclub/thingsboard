@@ -55,17 +55,18 @@
           </mat-form-field>
           <tb-phone-input [required]="false"
                           label="{{ 'contact.phone' | translate }}"
-                          [enableFlagsSelect]="true"
+                          defaultCountry="CN"
+                          [enableFlagsSelect]="false"
                           formControlName="phone">
           </tb-phone-input>
-          <mat-form-field class="mat-block">
+          <!--          <mat-form-field class="mat-block">
             <mat-label translate>language.language</mat-label>
             <mat-select formControlName="language">
               <mat-option *ngFor="let lang of languageList" [value]="lang">
                 {{ lang ? ('language.locales.' + lang | translate) : ''}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>-->
           <mat-form-field class="mat-block" floatLabel="always">
             <mat-label translate>unit.unit-system</mat-label>
             <mat-select formControlName="unitSystem"
@@ -76,7 +77,7 @@
               }
             </mat-select>
           </mat-form-field>
-          <section class="tb-home-dashboard flex flex-1 flex-col gt-sm:flex-row" *ngIf="!isSysAdmin()">
+          <!--          <section class="tb-home-dashboard flex flex-1 flex-col gt-sm:flex-row" *ngIf="!isSysAdmin()">
             <tb-dashboard-autocomplete
               class="flex-1"
               label="{{ 'dashboard.home-dashboard' | translate }}"
@@ -89,7 +90,7 @@
             <mat-checkbox class="flex-1" formControlName="homeDashboardHideToolbar">
               {{ 'dashboard.home-dashboard-hide-toolbar' | translate }}
             </mat-checkbox>
-          </section>
+          </section>-->
           <div class="flex flex-row items-start justify-end">
             <button mat-button mat-raised-button color="primary"
                     type="submit"
