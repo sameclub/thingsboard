@@ -48,7 +48,7 @@
               {{ 'device-profile.name-max-length' | translate }}
             </mat-error>
           </mat-form-field>
-          <tb-rule-chain-autocomplete
+          <!--          <tb-rule-chain-autocomplete
             labelText="device-profile.default-rule-chain"
             formControlName="defaultRuleChainId">
           </tb-rule-chain-autocomplete>
@@ -66,7 +66,7 @@
             formControlName="defaultEdgeRuleChainId"
             [ruleChainType]="edgeRuleChainType">
             <span tb-hint>{{'device-profile.default-edge-rule-chain-hint' | translate}}</span>
-          </tb-rule-chain-autocomplete>
+          </tb-rule-chain-autocomplete>-->
           <mat-form-field class="mat-block !hidden">
             <mat-label translate>device-profile.type</mat-label>
             <mat-select formControlName="type" required>
@@ -112,7 +112,7 @@
         </tb-device-profile-transport-configuration>
       </form>
     </mat-step>
-    <mat-step [stepControl]="alarmRulesFormGroup" [optional]="true">
+    <!--<mat-step [stepControl]="alarmRulesFormGroup" [optional]="true">
       <form [formGroup]="alarmRulesFormGroup" style="padding-bottom: 16px;">
         <ng-template matStepLabel>{{'device-profile.alarm-rules-with-count' | translate:
           {count: alarmRulesFormGroup.get('alarms').value ?
@@ -122,7 +122,7 @@
           [deviceProfileId]="null">
         </tb-device-profile-alarms>
       </form>
-    </mat-step>
+    </mat-step>-->
     <mat-step [stepControl]="provisionConfigFormGroup" [optional]="true">
       <form [formGroup]="provisionConfigFormGroup" style="padding-bottom: 16px;">
         <ng-template matStepLabel>{{ 'device-profile.device-provisioning' | translate }}</ng-template>

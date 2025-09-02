@@ -85,7 +85,7 @@ export class AddDeviceProfileDialogComponent extends
 
   transportConfigFormGroup: UntypedFormGroup;
 
-  alarmRulesFormGroup: UntypedFormGroup;
+  // alarmRulesFormGroup: UntypedFormGroup;
 
   provisionConfigFormGroup: UntypedFormGroup;
 
@@ -112,10 +112,10 @@ export class AddDeviceProfileDialogComponent extends
         name: [data.deviceProfileName, [Validators.required, Validators.maxLength(255)]],
         type: [DeviceProfileType.DEFAULT, [Validators.required]],
         image: [null, []],
-        defaultRuleChainId: [null, []],
-        defaultDashboardId: [null, []],
-        defaultQueueName: [null, []],
-        defaultEdgeRuleChainId: [null, []],
+        // defaultRuleChainId: [null, []],
+        // defaultDashboardId: [null, []],
+        // defaultQueueName: [null, []],
+        // defaultEdgeRuleChainId: [null, []],
         description: ['', []]
       }
     );
@@ -132,11 +132,11 @@ export class AddDeviceProfileDialogComponent extends
       this.deviceProfileTransportTypeChanged();
     });
 
-    this.alarmRulesFormGroup = this.fb.group(
-      {
-        alarms: [null]
-      }
-    );
+    // this.alarmRulesFormGroup = this.fb.group(
+    //   {
+    //     alarms: [null]
+    //   }
+    // );
 
     this.provisionConfigFormGroup = this.fb.group(
       {
@@ -175,8 +175,8 @@ export class AddDeviceProfileDialogComponent extends
         return this.deviceProfileDetailsFormGroup;
       case 1:
         return this.transportConfigFormGroup;
-      case 2:
-        return this.alarmRulesFormGroup;
+      // case 2:
+      //   return this.alarmRulesFormGroup;
       case 3:
         return this.provisionConfigFormGroup;
     }
@@ -199,19 +199,20 @@ export class AddDeviceProfileDialogComponent extends
         profileData: {
           configuration: createDeviceProfileConfiguration(DeviceProfileType.DEFAULT),
           transportConfiguration: this.transportConfigFormGroup.get('transportConfiguration').value,
-          alarms: this.alarmRulesFormGroup.get('alarms').value,
+          // alarms: this.alarmRulesFormGroup.get('alarms').value,
+          alarms: null,
           provisionConfiguration: deviceProvisionConfiguration
         }
       };
-      if (this.deviceProfileDetailsFormGroup.get('defaultRuleChainId').value) {
-        deviceProfile.defaultRuleChainId = new RuleChainId(this.deviceProfileDetailsFormGroup.get('defaultRuleChainId').value);
-      }
-      if (this.deviceProfileDetailsFormGroup.get('defaultDashboardId').value) {
-        deviceProfile.defaultDashboardId = new DashboardId(this.deviceProfileDetailsFormGroup.get('defaultDashboardId').value);
-      }
-      if (this.deviceProfileDetailsFormGroup.get('defaultEdgeRuleChainId').value) {
-        deviceProfile.defaultEdgeRuleChainId = new RuleChainId(this.deviceProfileDetailsFormGroup.get('defaultEdgeRuleChainId').value);
-      }
+      // if (this.deviceProfileDetailsFormGroup.get('defaultRuleChainId').value) {
+      //   deviceProfile.defaultRuleChainId = new RuleChainId(this.deviceProfileDetailsFormGroup.get('defaultRuleChainId').value);
+      // }
+      // if (this.deviceProfileDetailsFormGroup.get('defaultDashboardId').value) {
+      //   deviceProfile.defaultDashboardId = new DashboardId(this.deviceProfileDetailsFormGroup.get('defaultDashboardId').value);
+      // }
+      // if (this.deviceProfileDetailsFormGroup.get('defaultEdgeRuleChainId').value) {
+      //   deviceProfile.defaultEdgeRuleChainId = new RuleChainId(this.deviceProfileDetailsFormGroup.get('defaultEdgeRuleChainId').value);
+      // }
       this.deviceProfileService.saveDeviceProfile(deepTrim(deviceProfile)).subscribe(
         (savedDeviceProfile) => {
           this.dialogRef.close(savedDeviceProfile);
@@ -226,8 +227,8 @@ export class AddDeviceProfileDialogComponent extends
         return 'device-profile.device-profile-details';
       case 1:
         return 'device-profile.transport-configuration';
-      case 2:
-        return 'device-profile.alarm-rules';
+      // case 2:
+      //   return 'device-profile.alarm-rules';
       case 3:
         return 'device-profile.device-provisioning';
     }
