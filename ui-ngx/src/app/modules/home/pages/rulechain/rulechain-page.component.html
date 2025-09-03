@@ -101,7 +101,7 @@
                             (applyDetails)="saveRuleNode()"
                             [theForm]="tbRuleNode.ruleNodeFormGroup">
             <div class="details-buttons">
-              <div [tb-help]="helpLinkIdForRuleNodeType()"></div>
+              <!-- <div [tb-help]="helpLinkIdForRuleNodeType()"></div> -->
             </div>
             <mat-tab-group mat-stretch-tabs="false" class="tb-absolute-fill tb-rulenode-details flex-1" [(selectedIndex)]="selectedRuleNodeTabIndex">
               <mat-tab label="{{ 'rulenode.details' | translate }}">
@@ -146,7 +146,7 @@
                             (applyDetails)="saveRuleNodeLink()"
                             [theForm]="tbRuleNodeLink.ruleNodeLinkFormGroup">
             <div class="details-buttons">
-              <div [tb-help]="'ruleEngine'"></div>
+              <!-- <div [tb-help]="'ruleEngine'"></div> -->
             </div>
             <tb-rule-node-link
               class="flex-1"

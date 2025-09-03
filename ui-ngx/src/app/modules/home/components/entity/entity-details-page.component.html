@@ -28,7 +28,7 @@
         <div class="tb-details-title tb-ellipsis">{{ headerTitle }}</div>
         <div class="tb-details-subtitle tb-ellipsis">{{ headerSubtitle }}</div>
       </div>
-      <div class="tb-help" [tb-help]="helpLinkId()"></div>
+      <!-- <div class="tb-help" [tb-help]="helpLinkId()"></div> -->
       <span class="flex-1"></span>
       <section *ngIf="!isReadOnly" class="tb-header-button flex flex-row gap-2">
         <button [disabled]="(isLoading$ | async) || detailsForm.invalid || !detailsForm.dirty"

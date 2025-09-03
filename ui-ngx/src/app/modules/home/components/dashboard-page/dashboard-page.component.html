@@ -364,9 +364,9 @@
                   matTooltipPosition="below">
             <mat-icon>close</mat-icon></button>
         </section>
-        <section *ngIf="!embedded" data-html2canvas-ignore class="tb-powered-by-footer" [style.color]="dashboard.configuration.settings.titleColor">
+        <!-- <section *ngIf="!embedded" data-html2canvas-ignore class="tb-powered-by-footer" [style.color]="dashboard.configuration.settings.titleColor">
           <span>Powered by <a href="https://thingsboard.io" target="_blank">ThingsBoard v.{{ thingsboardVersion }}</a></span>
-        </section>
+        </section> -->
       </mat-drawer-content>
       <mat-drawer class="tb-details-drawer"
                   [opened]="isEditingWidget || isAddingWidget"
@@ -385,7 +385,7 @@
               <tb-toggle-option value="basic">{{ 'widget.basic-mode' | translate }}</tb-toggle-option>
               <tb-toggle-option value="advanced">{{ 'widget.advanced-mode' | translate }}</tb-toggle-option>
             </tb-toggle-select>
-            <div [tb-help]="helpLinkIdForWidgetType()"></div>
+            <!-- <div [tb-help]="helpLinkIdForWidgetType()"></div> -->
           </div>
           <tb-edit-widget #tbEditWidget
                           [dashboard]="dashboard"

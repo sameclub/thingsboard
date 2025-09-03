@@ -162,7 +162,7 @@ export class AddDeviceProfileDialogComponent extends
   }
 
   nextStep() {
-    if (this.selectedIndex < 3) {
+    if (this.selectedIndex < this.maxStepperIndex) {
       this.addDeviceProfileStepper.next();
     } else {
       this.add();
@@ -177,6 +177,7 @@ export class AddDeviceProfileDialogComponent extends
         return this.transportConfigFormGroup;
       // case 2:
       //   return this.alarmRulesFormGroup;
+      // case 2:
       case 3:
         return this.provisionConfigFormGroup;
     }
@@ -191,7 +192,7 @@ export class AddDeviceProfileDialogComponent extends
         name: this.deviceProfileDetailsFormGroup.get('name').value,
         type: this.deviceProfileDetailsFormGroup.get('type').value,
         image: this.deviceProfileDetailsFormGroup.get('image').value,
-        defaultQueueName: this.deviceProfileDetailsFormGroup.get('defaultQueueName').value,
+        // defaultQueueName: this.deviceProfileDetailsFormGroup.get('defaultQueueName').value,
         transportType: this.transportConfigFormGroup.get('transportType').value,
         provisionType: deviceProvisionConfiguration.type,
         provisionDeviceKey,
@@ -229,7 +230,8 @@ export class AddDeviceProfileDialogComponent extends
         return 'device-profile.transport-configuration';
       // case 2:
       //   return 'device-profile.alarm-rules';
-      case 3:
+      // case 3:
+      case 2:
         return 'device-profile.device-provisioning';
     }
   }
