@@ -18,7 +18,7 @@
 <mat-toolbar color="primary">
   <h2 translate>{{ dialogTitle }}</h2>
   <span class="flex-1"></span>
-<!--  <!--  <div [tb-help]="'check-connectivity'"></div>-->-->
+<!-- <div [tb-help]="'check-connectivity'"></div> -->
   <button mat-icon-button
           (click)="close()"
           type="button">
@@ -147,9 +147,13 @@
                     <div class="tb-form-panel stroked">
                       <div class="tb-form-panel-title" translate>device.connectivity.install-necessary-client-tools</div>
                       <div class="tb-install-instruction-text">
-                        <ng-container *ngTemplateOutlet="seeDocumentation; context:
+                        <!-- <ng-container *ngTemplateOutlet="seeDocumentation; context:
                         {doc: {text: 'device.connectivity.install-mqtt-windows',
                         href: 'https://thingsboard.io/docs/reference/mqtt-api/?connectdevice=mqtt-windows#mqtt-connect'}}">
+                        </ng-container> -->
+                        <ng-container *ngTemplateOutlet="seeDocumentation; context:
+                        {doc: {text: 'device.connectivity.install-mqtt-windows',
+                        href: 'https://www.jianshu.com/p/4bc4f592516d'}}">
                         </ng-container>
                       </div>
                     </div>
