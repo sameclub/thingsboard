@@ -132,7 +132,7 @@ export class CalculatedFieldsTableConfig extends EntityTableConfig<CalculatedFie
         isEnabled: () => true,
         onAction: (event$, entity) => this.exportCalculatedField(event$, entity),
       },
-      {
+      /*{
         name: this.translate.instant('entity-view.events'),
         icon: 'mdi:clipboard-text-clock',
         isEnabled: () => true,
@@ -145,7 +145,7 @@ export class CalculatedFieldsTableConfig extends EntityTableConfig<CalculatedFie
         isEnabled: () => true,
         iconFunction: ({ debugSettings }) => this.entityDebugSettingsService.isDebugActive(debugSettings?.allEnabledUntil) || debugSettings?.failuresEnabled ? 'mdi:bug' : 'mdi:bug-outline',
         onAction: ($event, entity) => this.onOpenDebugConfig($event, entity),
-      },
+      },*/
       {
         name: this.translate.instant('action.edit'),
         icon: 'edit',

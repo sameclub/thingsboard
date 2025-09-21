@@ -1674,8 +1674,8 @@
         "device-state": "设备状态",
         "state": "状态",
         "any": "所有",
-        "active": "活动",
-        "inactive": "非活动",
+        "active": "在线",
+        "inactive": "离线",
         "public": "公开",
         "device-public": "设备公开",
         "select-device": "选择设备",
@@ -5385,7 +5385,7 @@
         "customer-users": "客户用户",
         "tenant-admins": "租户管理员",
         "sys-admin": "系统管理员",
-        "tenant-admin": "租户管理员",
+        "tenant-admin": "管理员",
         "customer": "客户",
         "anonymous": "匿名",
         "add": "添加用户",
@@ -7709,7 +7709,7 @@
             "info": "来自设备的所有消息"
         },
         "activity": {
-            "title": "活动"
+            "title": "在线"
         },
         "documentation": {
             "title": "文档",
@@ -7786,8 +7786,8 @@
         },
         "devices": {
             "view-docs": "查看文档",
-            "inactive": "非活动",
-            "active": "活动",
+            "inactive": "离线",
+            "active": "在线",
             "total": "总数"
         },
         "alarms": {

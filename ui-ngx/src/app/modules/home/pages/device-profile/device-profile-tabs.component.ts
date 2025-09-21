@@ -33,7 +33,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class DeviceProfileTabsComponent extends EntityTabsComponent<DeviceProfile> implements OnInit {
 
-  deviceTransportTypes = Object.values(DeviceTransportType);
+  // Hide LwM2M and SNMP transport types temporarily
+  deviceTransportTypes = Object.values(DeviceTransportType)
+    .filter((type) => type !== DeviceTransportType.LWM2M && type !== DeviceTransportType.SNMP);
 
   deviceTransportTypeTranslations = deviceTransportTypeTranslationMap;
 

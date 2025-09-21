@@ -781,8 +781,8 @@ export enum DeviceCredentialsType {
 export const credentialTypeNames = new Map<DeviceCredentialsType, string>(
   [
     [DeviceCredentialsType.ACCESS_TOKEN, 'Access token'],
-    [DeviceCredentialsType.X509_CERTIFICATE, 'X.509'],
-    [DeviceCredentialsType.MQTT_BASIC, 'MQTT Basic'],
+    // [DeviceCredentialsType.X509_CERTIFICATE, 'X.509'], // hidden temporarily
+    // [DeviceCredentialsType.MQTT_BASIC, 'MQTT Basic'], // hidden temporarily
     [DeviceCredentialsType.LWM2M_CREDENTIALS, 'LwM2M Credentials']
   ]
 );
@@ -790,12 +790,12 @@ export const credentialTypeNames = new Map<DeviceCredentialsType, string>(
 export const credentialTypesByTransportType = new Map<DeviceTransportType, DeviceCredentialsType[]>(
   [
     [DeviceTransportType.DEFAULT, [
-      DeviceCredentialsType.ACCESS_TOKEN, DeviceCredentialsType.X509_CERTIFICATE, DeviceCredentialsType.MQTT_BASIC
+      DeviceCredentialsType.ACCESS_TOKEN /*, DeviceCredentialsType.X509_CERTIFICATE, DeviceCredentialsType.MQTT_BASIC */
     ]],
     [DeviceTransportType.MQTT, [
-      DeviceCredentialsType.ACCESS_TOKEN, DeviceCredentialsType.X509_CERTIFICATE, DeviceCredentialsType.MQTT_BASIC
+      DeviceCredentialsType.ACCESS_TOKEN /*, DeviceCredentialsType.X509_CERTIFICATE, DeviceCredentialsType.MQTT_BASIC */
     ]],
-    [DeviceTransportType.COAP, [DeviceCredentialsType.ACCESS_TOKEN, DeviceCredentialsType.X509_CERTIFICATE]],
+    [DeviceTransportType.COAP, [DeviceCredentialsType.ACCESS_TOKEN /*, DeviceCredentialsType.X509_CERTIFICATE*/]],
     [DeviceTransportType.LWM2M, [DeviceCredentialsType.LWM2M_CREDENTIALS]],
     [DeviceTransportType.SNMP, [DeviceCredentialsType.ACCESS_TOKEN]]
   ]

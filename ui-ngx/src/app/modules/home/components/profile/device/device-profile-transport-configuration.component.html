@@ -32,16 +32,20 @@
         formControlName="configuration">
       </tb-coap-device-profile-transport-configuration>
     </ng-template>
+    <!-- Hidden temporarily: LwM2M transport configuration UI
     <ng-template [ngSwitchCase]="deviceTransportType.LWM2M">
       <tb-profile-lwm2m-device-transport-configuration
         [isAdd]="isAdd"
         formControlName="configuration">
       </tb-profile-lwm2m-device-transport-configuration>
     </ng-template>
+    -->
+    <!-- Hidden temporarily: SNMP transport configuration UI
     <ng-template [ngSwitchCase]="deviceTransportType.SNMP">
       <tb-snmp-device-profile-transport-configuration
         formControlName="configuration">
       </tb-snmp-device-profile-transport-configuration>
     </ng-template>
+    -->
   </div>
 </div>

@@ -86,7 +86,8 @@ export class CalculatedFieldArgumentPanelComponent implements OnInit, AfterViewI
   entityFilter: EntityFilter;
   entityNameSubject = new BehaviorSubject<string>(null);
 
-  readonly argumentEntityTypes = Object.values(ArgumentEntityType) as ArgumentEntityType[];
+  readonly argumentEntityTypes = Object.values(ArgumentEntityType)
+    .filter(type => type !== ArgumentEntityType.Asset && type !== ArgumentEntityType.Customer && type !== ArgumentEntityType.Tenant) as ArgumentEntityType[];
   readonly ArgumentEntityTypeTranslations = ArgumentEntityTypeTranslations;
   readonly ArgumentType = ArgumentType;
   readonly DataKeyType = DataKeyType;

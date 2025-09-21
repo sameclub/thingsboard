@@ -61,7 +61,8 @@ export class DeviceProfileProvisionConfigurationComponent implements ControlValu
   provisionConfigurationFormGroup: UntypedFormGroup;
 
   deviceProvisionType = DeviceProvisionType;
-  deviceProvisionTypes = Object.keys(DeviceProvisionType);
+  // Hide X.509 Certificate Chain option temporarily
+  deviceProvisionTypes = Object.keys(DeviceProvisionType).filter(type => type !== DeviceProvisionType.X509_CERTIFICATE_CHAIN);
   deviceProvisionTypeTranslateMap = deviceProvisionTypeTranslationMap;
 
   private requiredValue: boolean;

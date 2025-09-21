@@ -77,7 +77,9 @@ export class AddDeviceProfileDialogComponent extends
 
   deviceTransportTypeHints = deviceTransportTypeHintMap;
 
-  deviceTransportTypes = Object.values(DeviceTransportType);
+  // Hide LwM2M and SNMP transport types temporarily
+  deviceTransportTypes = Object.values(DeviceTransportType)
+    .filter((type) => type !== DeviceTransportType.LWM2M && type !== DeviceTransportType.SNMP);
 
   deviceTransportTypeTranslations = deviceTransportTypeTranslationMap;
 
