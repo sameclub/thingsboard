@@ -93,6 +93,8 @@
                 (click)="deleteTelemetry($event)">
           <mat-icon>delete</mat-icon>
         </button>
+        <!-- 隐藏需求: 选中数据键时不允许“在部件上显示”，通过注释移除按钮 -->
+        <!--
         <button mat-raised-button color="accent"
                 class="button-widget-action"
                 [disabled]="isLoading$ | async"
@@ -102,6 +104,7 @@
           <mat-icon>now_widgets</mat-icon>
           <span translate>attribute.show-on-widget</span>
         </button>
+        -->
       </div>
     </mat-toolbar>
     <mat-toolbar class="mat-mdc-table-toolbar" color="primary" [class.!hidden]="mode !== 'widget'">

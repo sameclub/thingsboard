@@ -793,7 +793,7 @@ const defaultUserMenuMap = new Map<Authority, MenuReference[]>([
     [
       {id: MenuId.home},
       // {id: MenuId.alarms},
-      // {id: MenuId.dashboards},
+      {id: MenuId.dashboards},
       {id: MenuId.devices},
       {id: MenuId.device_profiles},
       {id: MenuId.otaUpdates},

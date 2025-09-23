@@ -668,6 +668,12 @@ export class WidgetComponent extends PageComponent implements OnInit, OnChanges,
   }
 
   private reInit() {
+    // Skip auto re-init if explicitly disabled by widget config (e.g., embedded single-entity charts)
+    try {
+      if ((this.widget?.config as any)?.disableAutoReInit) {
+        return;
+      }
+    } catch (_e) {/**/}
     if (this.cafs.reinit) {
       this.cafs.reinit();
       this.cafs.reinit = null;
@@ -967,7 +973,17 @@ export class WidgetComponent extends PageComponent implements OnInit, OnChanges,
         }
       },
       onInitialPageDataChanged: (_subscription, _nextPageData) => {
-        this.reInit();
+        try {
+          const ds = this.widget?.config?.datasources;
+          const isSingleEntity = Array.isArray(ds) && ds.length === 1 && ds[0]?.entityFilter?.type === 'singleEntity';
+          const hasAlias = Array.isArray(ds) && ds.some(d => !!d?.entityAliasId);
+          // Avoid aggressive re-init for stable single-entity datasources without aliases
+          if (!isSingleEntity || hasAlias) {
+            this.reInit();
+          }
+        } catch (e) {
+          this.reInit();
+        }
       },
       forceReInit: () => {
         this.reInit();

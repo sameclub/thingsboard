@@ -1,0 +1,68 @@
+.telemetry-charts-container {
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 16px;
+}
+
+.loading-text {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 16px;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  color: rgba(0, 0, 0, 0.26);
+  width: 48px;
+  height: 48px;
+}
+
+.no-data-text {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.charts-grid {
+  padding: 8px;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.chart-container tb-widget {
+  display: block;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    padding: 8px;
+  }
+
+  .chart-container {
+    min-height: 250px;
+  }
+}

@@ -343,6 +343,9 @@ export class DataAggregator {
         this.dataBuffer[key.id] = [];
       }
     });
+    if (!this.aggregationMap || !this.aggregationMap.aggMap) {
+      return this.dataBuffer;
+    }
     for (const idStr of Object.keys(this.aggregationMap.aggMap)) {
       const id = Number(idStr);
       const aggKeyData = this.aggregationMap.aggMap[id];
@@ -480,6 +483,9 @@ export class DataAggregator {
   }
 
   private updateLastInterval() {
+    if (!this.aggregationMap || !this.aggregationMap.aggMap) {
+      return;
+    }
     for (const idStr of Object.keys(this.aggregationMap.aggMap)) {
       const id = Number(idStr);
       const aggKeyData = this.aggregationMap.aggMap[id];

@@ -1556,6 +1556,7 @@
         "no-devices-text": "未找到设备",
         "assign-to-customer-text": "请选择客户分配设备",
         "device-details": "设备详细信息",
+        "telemetry-charts": "遥测数据图表",
         "add-device-text": "添加设备",
         "credentials": "凭据",
         "manage-credentials": "管理凭据",

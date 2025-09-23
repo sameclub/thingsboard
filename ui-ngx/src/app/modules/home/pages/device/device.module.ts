@@ -24,6 +24,7 @@ import { DeviceCredentialsDialogComponent } from '@modules/home/pages/device/dev
 import { HomeDialogsModule } from '../../dialogs/home-dialogs.module';
 import { HomeComponentsModule } from '@modules/home/components/home-components.module';
 import { DeviceTabsComponent } from '@home/pages/device/device-tabs.component';
+import { DeviceTelemetryChartsComponent } from './device-telemetry-charts.component';
 import { DefaultDeviceConfigurationComponent } from './data/default-device-configuration.component';
 import { DeviceConfigurationComponent } from './data/device-configuration.component';
 import { DeviceDataComponent } from './data/device-data.component';
@@ -50,6 +51,7 @@ import { DeviceCheckConnectivityDialogComponent } from './device-check-connectiv
     DeviceDataComponent,
     DeviceComponent,
     DeviceTabsComponent,
+    DeviceTelemetryChartsComponent,
     DeviceTableHeaderComponent,
     DeviceCredentialsDialogComponent,
     DeviceCheckConnectivityDialogComponent

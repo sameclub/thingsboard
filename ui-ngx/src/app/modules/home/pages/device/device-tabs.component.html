@@ -32,7 +32,12 @@
                       [entityName]="entity.name">
   </tb-attribute-table>
 </mat-tab>
-<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN" 
+<mat-tab *ngIf="entity"
+         label="{{ 'device.telemetry-charts' | translate }}" #telemetryChartsTab="matTab">
+  <tb-device-telemetry-charts [entity]="entity" [active]="telemetryChartsTab.isActive">
+  </tb-device-telemetry-charts>
+</mat-tab>
+<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN"
          label="{{ 'entity.type-calculated-fields' | translate }}" #calculatedFieldsTab="matTab">
   <tb-calculated-fields-table [active]="calculatedFieldsTab.isActive" [entityId]="entity.id"/>
 </mat-tab>

@@ -110,7 +110,7 @@ export class CalculatedFieldDialogComponent extends DialogComponent<CalculatedFi
   readonly EntityType = EntityType;
   readonly CalculatedFieldType = CalculatedFieldType;
   readonly ScriptLanguage = ScriptLanguage;
-  readonly fieldTypes = Object.values(CalculatedFieldType) as CalculatedFieldType[];
+  readonly fieldTypes = [CalculatedFieldType.SIMPLE]; // Script type hidden
   readonly outputTypes = Object.values(OutputType) as OutputType[];
   readonly CalculatedFieldTypeTranslations = CalculatedFieldTypeTranslations;
 

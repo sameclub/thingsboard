@@ -53,14 +53,14 @@
             [additionalActionConfig]="additionalDebugActionConfig"
           />-->
         </div>
-        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <!--<mat-form-field appearance="outline" subscriptSizing="dynamic">
           <mat-label>{{ 'common.type' | translate }}</mat-label>
           <mat-select formControlName="type">
             @for (type of fieldTypes; track type) {
               <mat-option [value]="type">{{ CalculatedFieldTypeTranslations.get(type) | translate}}</mat-option>
             }
           </mat-select>
-        </mat-form-field>
+        </mat-form-field>-->
       </div>
       <ng-container [formGroup]="configFormGroup">
         <div class="tb-form-panel">
@@ -99,7 +99,7 @@
               <mat-hint>{{ 'calculated-fields.hint.expression' | translate }}</mat-hint>
             }
           </mat-form-field>
-          <div [class.hidden]="fieldFormGroup.get('type').value !== CalculatedFieldType.SCRIPT">
+          <!--<div [class.hidden]="fieldFormGroup.get('type').value !== CalculatedFieldType.SCRIPT">
             <tb-js-func
               required
               formControlName="expressionSCRIPT"
@@ -131,7 +131,7 @@
                 {{ 'calculated-fields.test-script-function' | translate }}
               </button>
             </div>
-          </div>
+          </div>-->
         </div>
         <div class="tb-form-panel" [formGroup]="outputFormGroup">
           <div class="tb-form-panel-title">{{ 'calculated-fields.output' | translate }}</div>

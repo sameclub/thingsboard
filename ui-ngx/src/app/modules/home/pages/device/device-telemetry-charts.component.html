@@ -1,0 +1,49 @@
+<!--
+
+    Copyright © 2016-2025 The Thingsboard Authors
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<div class="telemetry-charts-container" *ngIf="entity">
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && telemetryKeys.length === 0" class="no-data-container">
+    <mat-icon class="no-data-icon">trending_up</mat-icon>
+    <span class="no-data-text">{{ 'attribute.no-telemetry-text' | translate }}</span>
+  </div>
+
+  <div *ngIf="!loading && telemetryKeys.length > 0" class="charts-grid">
+    <tb-dashboard
+      [aliasController]="aliasController"
+      [stateController]="stateController"
+      [dashboardTimewindow]="dashboardTimewindow"
+      [widgets]="widgets"
+      [autofillHeight]="false"
+      [columns]="24"
+      [isEdit]="false"
+      [isPreview]="false"
+      [isMobileDisabled]="true"
+      [isEditActionEnabled]="false"
+      [isRemoveActionEnabled]="false">
+    </tb-dashboard>
+  </div>
+</div>
+
+<ng-template #widgetTitlePanel>
+</ng-template>
+
+<ng-template #widgetHeaderActionsPanel>
+</ng-template>

@@ -1653,6 +1653,7 @@
         "no-devices-text": "No devices found",
         "assign-to-customer-text": "Please select the customer to assign the device(s)",
         "device-details": "Device details",
+        "telemetry-charts": "Telemetry charts",
         "add-device-text": "Add new device",
         "credentials": "Credentials",
         "manage-credentials": "Manage credentials",
