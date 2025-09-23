@@ -67,7 +67,7 @@
         </mat-form-field>
       </div>
       <ng-container [formGroup]="refEntityIdFormGroup">
-        <div class="tb-form-row">
+        <!--<div class="tb-form-row">
           <div class="fixed-title-width">{{ 'entity.entity-type' | translate }}</div>
           <mat-form-field class="tb-flex no-gap" appearance="outline" subscriptSizing="dynamic">
             <mat-select formControlName="entityType">
@@ -76,7 +76,7 @@
               }
             </mat-select>
           </mat-form-field>
-        </div>
+        </div>-->
         @if (ArgumentEntityTypeParamsMap.has(entityType)) {
           <div class="tb-form-row">
             <div class="fixed-title-width tb-required">{{ ArgumentEntityTypeParamsMap.get(entityType).title | translate }}</div>

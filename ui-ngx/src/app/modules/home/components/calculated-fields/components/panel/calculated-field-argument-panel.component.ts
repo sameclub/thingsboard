@@ -87,7 +87,7 @@ export class CalculatedFieldArgumentPanelComponent implements OnInit, AfterViewI
   entityNameSubject = new BehaviorSubject<string>(null);
 
   readonly argumentEntityTypes = Object.values(ArgumentEntityType)
-    .filter(type => type !== ArgumentEntityType.Asset && type !== ArgumentEntityType.Customer && type !== ArgumentEntityType.Tenant) as ArgumentEntityType[];
+    .filter(type => type === ArgumentEntityType.Current) as ArgumentEntityType[]; // Hidden: only show current entity option
   readonly ArgumentEntityTypeTranslations = ArgumentEntityTypeTranslations;
   readonly ArgumentType = ArgumentType;
   readonly DataKeyType = DataKeyType;
