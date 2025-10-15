@@ -159,7 +159,6 @@
         <module>ui-ngx</module>
         <module>tools</module>
         <module>application</module>
-        <module>msa</module>
         <module>rest-client</module>
         <module>monitoring</module>
     </modules>
@@ -783,77 +782,6 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <version>3.0</version>
-                    <configuration>
-                        <header>${main.dir}/license-header-template.txt</header>
-                        <properties>
-                            <owner>The Sensi Authors</owner>
-                        </properties>
-                        <excludes>
-                            <exclude>**/.env</exclude>
-                            <exclude>**/*.env</exclude>
-                            <exclude>**/.eslintrc</exclude>
-                            <exclude>**/.babelrc</exclude>
-                            <exclude>**/.jshintrc</exclude>
-                            <exclude>**/.gradle/**</exclude>
-                            <exclude>**/nightwatch</exclude>
-                            <exclude>**/README</exclude>
-                            <exclude>**/LICENSE</exclude>
-                            <exclude>**/banner.txt</exclude>
-                            <exclude>node_modules/**</exclude>
-                            <exclude>**/*.properties</exclude>
-                            <exclude>src/test/resources/**</exclude>
-                            <exclude>src/vendor/**</exclude>
-                            <exclude>src/font/**</exclude>
-                            <exclude>src/sh/**</exclude>
-                            <exclude>packaging/*/scripts/control/**</exclude>
-                            <exclude>packaging/*/scripts/windows/**</exclude>
-                            <exclude>packaging/*/scripts/init/**</exclude>
-                            <exclude>**/*.log</exclude>
-                            <exclude>**/*.current</exclude>
-                            <exclude>.instance_id</exclude>
-                            <exclude>src/main/scripts/control/**</exclude>
-                            <exclude>src/main/scripts/windows/**</exclude>
-                            <exclude>src/main/resources/public/static/rulenode/**</exclude>
-                            <exclude>**/*.proto.js</exclude>
-                            <exclude>docker/haproxy/**</exclude>
-                            <exclude>docker/tb-node/**</exclude>
-                            <exclude>ui/**</exclude>
-                            <exclude>**/.browserslistrc</exclude>
-                            <exclude>**/yarn.lock</exclude>
-                            <exclude>**/.yarnrc</exclude>
-                            <exclude>**/.angular/**</exclude>
-                            <exclude>**/*.raw</exclude>
-                            <exclude>**/*.patch</exclude>
-                            <exclude>**/apache/cassandra/io/**</exclude>
-                            <exclude>.run/**</exclude>
-                            <exclude>**/NetworkReceive.java</exclude>
-                            <exclude>**/lwm2m-registry/**</exclude>
-                            <exclude>**/test/resources/lwm2m/**</exclude>
-                            <exclude>**/resources/lwm2m/models/**</exclude>
-                            <exclude>src/main/data/resources/**</exclude>
-                        </excludes>
-                        <mapping>
-                            <proto>JAVADOC_STYLE</proto>
-                            <cql>DOUBLEDASHES_STYLE</cql>
-                            <scss>JAVADOC_STYLE</scss>
-                            <jsx>SLASHSTAR_STYLE</jsx>
-                            <tsx>SLASHSTAR_STYLE</tsx>
-                            <conf>SCRIPT_STYLE</conf>
-                            <gradle>JAVADOC_STYLE</gradle>
-                        </mapping>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>io.github.git-commit-id</groupId>
                     <artifactId>git-commit-id-maven-plugin</artifactId>
                     <version>5.0.0</version>
@@ -878,12 +806,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
 
     <dependencies>
@@ -1067,62 +989,6 @@
                 <groupId>org.thingsboard</groupId>
                 <artifactId>rest-client</artifactId>
                 <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa</groupId>
-                <artifactId>js-executor</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa</groupId>
-                <artifactId>web-ui</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa</groupId>
-                <artifactId>tb-node</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa.transport</groupId>
-                <artifactId>coap</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa.transport</groupId>
-                <artifactId>http</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa.transport</groupId>
-                <artifactId>mqtt</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa.transport</groupId>
-                <artifactId>lwm2m</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.thingsboard.msa.transport</groupId>
-                <artifactId>snmp</artifactId>
-                <version>${project.version}</version>
-                <type>docker-info</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
