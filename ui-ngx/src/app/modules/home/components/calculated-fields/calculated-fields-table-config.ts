@@ -121,7 +121,8 @@ export class CalculatedFieldsTableConfig extends EntityTableConfig<CalculatedFie
     };
 
     this.columns.push(new DateEntityTableColumn<CalculatedField>('createdTime', 'common.created-time', this.datePipe, '150px'));
-    this.columns.push(new EntityTableColumn<CalculatedField>('name', 'common.name', '33%'));
+    this.columns.push(new EntityTableColumn<CalculatedField>('name', 'common.name', '25%'));
+    this.columns.push(new EntityTableColumn<CalculatedField>('section', 'calculated-data.section', '20%'));
     this.columns.push(new EntityTableColumn<CalculatedField>('type', 'common.type', '50px', entity => this.translate.instant(CalculatedFieldTypeTranslations.get(entity.type))));
     this.columns.push(expressionColumn);
 

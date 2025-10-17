@@ -38,6 +38,7 @@ export interface CalculatedField extends Omit<BaseData<CalculatedFieldId>, 'labe
   configuration: CalculatedFieldConfiguration;
   type: CalculatedFieldType;
   entityId: EntityId;
+  section?: string;
 }
 
 export enum CalculatedFieldType {

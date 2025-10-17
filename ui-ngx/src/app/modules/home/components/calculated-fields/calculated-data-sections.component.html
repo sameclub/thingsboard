@@ -1,0 +1,73 @@
+<!--
+
+    Copyright © 2016-2025 The SenSi Authors
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<div class="calculated-data-sections mat-padding" *ngIf="!loading; else loadingTpl">
+  <div class="header">
+    <div class="filter-buttons">
+      <button mat-stroked-button [color]="filter === 'ALL' ? 'primary' : undefined" (click)="setFilter('ALL')">
+        {{ 'calculated-data.all' | translate }}
+      </button>
+      <button mat-stroked-button [color]="filter === 'TS' ? 'primary' : undefined" (click)="setFilter('TS')">
+        {{ 'calculated-data.telemetry' | translate }}
+      </button>
+      <button mat-stroked-button [color]="filter === 'ATTR' ? 'primary' : undefined" (click)="setFilter('ATTR')">
+        {{ 'calculated-data.attributes' | translate }}
+      </button>
+    </div>
+    <button mat-icon-button (click)="refresh()" matTooltip="{{ 'action.refresh' | translate }}">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="groups.length === 0" class="empty">
+    {{ 'calculated-data.no-found' | translate }}
+  </div>
+
+  <div class="group" *ngFor="let g of groups">
+    <h3 class="group-title">{{ g.key }}</h3>
+    <hr class="tb-divider">
+    <div class="items">
+      <div class="item" *ngFor="let it of g.items">
+        <div class="meta">
+          <div class="name">{{ it.key }}</div>
+          <div class="type" *ngIf="it.type === OutputType.Timeseries">{{ 'calculated-data.telemetry' | translate }}</div>
+          <div class="type" *ngIf="it.type === OutputType.Attribute">
+            {{ 'calculated-data.attributes' | translate }}
+            <span class="scope" *ngIf="it.scope === 'SERVER_SCOPE'">({{ 'calculated-fields.server-attributes' | translate }})</span>
+            <span class="scope" *ngIf="it.scope === 'CLIENT_SCOPE'">({{ 'calculated-fields.client-attributes' | translate }})</span>
+            <span class="scope" *ngIf="it.scope === 'SHARED_SCOPE'">({{ 'calculated-fields.shared-attributes' | translate }})</span>
+          </div>
+        </div>
+        <div class="value">
+          <span class="val" *ngIf="it.value !== undefined && it.value !== null; else noValue">
+            {{ it.value | tbJson }}
+          </span>
+          <ng-template #noValue><span class="no-value">—</span></ng-template>
+          <span class="ts" *ngIf="it.ts">{{ it.ts | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="calculated-data-sections mat-padding">
+    <div class="tb-loader">
+      <mat-spinner color="accent" [diameter]="50" strokeWidth="3"></mat-spinner>
+    </div>
+  </div>
+</ng-template>

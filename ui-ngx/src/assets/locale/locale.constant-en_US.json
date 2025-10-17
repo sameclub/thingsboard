@@ -1090,6 +1090,15 @@
             "use-latest-timestamp": "If enabled, the calculated value will be persisted using the most recent timestamp from the arguments telemetry, instead of the server time."
         }
     },
+    "calculated-data": {
+        "all": "All",
+        "section": "Section",
+        "sections": "Sections",
+        "telemetry": "Telemetry",
+        "attributes": "Attributes",
+        "no-found": "No calculated data found",
+        "uncategorized": "Uncategorized"
+    },
     "ai-models": {
         "ai-models": "AI models",
         "ai-model": "AI model",
@@ -2242,7 +2251,7 @@
                 "tqs": "TQS: both TCP and SMS connections active; TCP in queue mode, SMS in standard mode (is not supported since LWM2M 1.1)",
                 "sq": "SQ: SMS connection in queue mode (is not supported since LWM2M 1.1)"
             },
-            "binding-tooltip": "This is the list in the\"binding\" resource of the LwM2M server object - /1/x/7.\nIndicates the supported binding modes in the LwM2M Client.\nThis value SHOULD be the same as the value in the “Supported Binding and Modes” resource in the Device Object (/3/0/16).\nWhile multiple transports are supported, only one transport binding can be used during the entire Transport Session.\nAs an example, when UDP and SMS are both supported, the LwM2M Client and the LwM2M Server can choose to communicate either over UDP or SMS during the entire Transport Session.",
+            "binding-tooltip": "This is the list in the\"binding\" resource of the LwM2M server object - /1/x/7.\nIndicates the supported binding modes in the LwM2M Client.\nThis value SHOULD be the same as the value in the “Supported Binding and Modes�?resource in the Device Object (/3/0/16).\nWhile multiple transports are supported, only one transport binding can be used during the entire Transport Session.\nAs an example, when UDP and SMS are both supported, the LwM2M Client and the LwM2M Server can choose to communicate either over UDP or SMS during the entire Transport Session.",
             "bootstrap-server": "Bootstrap Server",
             "lwm2m-server": "LwM2M Server",
             "include-bootstrap-server": "Include Bootstrap Server updates",
@@ -2272,7 +2281,7 @@
             "others-tab": "Other settings",
             "ota-update": "OTA update",
             "use-object-19-for-ota-update": "Use Object 19 for OTA file metadata (checksum, size, version, name)",
-            "use-object-19-for-ota-update-hint": "Use Resource ObjectId = 19 for OTA updates: FirmWare → InstanceId = 65534, SoftWare → InstanceId = 65535. The data format is JSON wrapped in Base64. This JSON contains OTA file metadata (file info): \"Checksum\" (SHA256). Additional fields: \"Title\" (OTA name), \"Version\" (OTA version), \"File Name\" (file name for storing OTA on the client), \"File Size\" (OTA size in bytes).",
+            "use-object-19-for-ota-update-hint": "Use Resource ObjectId = 19 for OTA updates: FirmWare �?InstanceId = 65534, SoftWare �?InstanceId = 65535. The data format is JSON wrapped in Base64. This JSON contains OTA file metadata (file info): \"Checksum\" (SHA256). Additional fields: \"Title\" (OTA name), \"Version\" (OTA version), \"File Name\" (file name for storing OTA on the client), \"File Size\" (OTA size in bytes).",
             "client-strategy": "Client strategy when connecting",
             "client-strategy-label": "Strategy",
             "client-strategy-only-observe": "Only Observe Request to the client after the initial connection",
@@ -5535,7 +5544,7 @@
         "duplicate-msg-to-all-partitions": "Duplicate message to all partitions",
         "processing-timeout": "Processing within, ms",
         "batch-size": "Batch size",
-        "retries": "Number of retries (0 – unlimited)",
+        "retries": "Number of retries (0 �?unlimited)",
         "failure-percentage": "Failure messages for skipping retries, %",
         "pause-between-retries": "Retry within, sec",
         "max-pause-between-retries": "Additional retry within, sec",
@@ -9546,9 +9555,9 @@
             "fa_IR": "فارسی (ایران)",
             "fr_FR": "français (France)",
             "it_IT": "italiano (Italia)",
-            "ja_JP": "日本語 (日本)",
-            "ka_GE": "ქართული (საქართველო)",
-            "ko_KR": "한국어 (대한민국)",
+            "ja_JP": "日本�?(日本)",
+            "ka_GE": "ქართულ�?(საქართველო)",
+            "ko_KR": "한국�?(대한민�?",
             "lt_LT": "lietuvių (Lietuva)",
             "lv_LV": "latviešu (Latvija)",
             "nl_BE": "Nederlands (België)",
@@ -9565,3 +9574,4 @@
         }
     }
 }
+

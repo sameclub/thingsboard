@@ -50,6 +50,11 @@ public class CalculatedField extends BaseData<CalculatedFieldId> implements HasN
     private EntityId entityId;
 
     @NoXss
+    @Length(fieldName = "section")
+    @Schema(description = "Optional section name for grouping calculated fields.")
+    private String section;
+
+    @NoXss
     @Length(fieldName = "type")
     private CalculatedFieldType type;
     @NoXss
@@ -80,6 +85,7 @@ public class CalculatedField extends BaseData<CalculatedFieldId> implements HasN
     public CalculatedField(TenantId tenantId, EntityId entityId, CalculatedFieldType type, String name, int configurationVersion, CalculatedFieldConfiguration configuration, Long version) {
         this.tenantId = tenantId;
         this.entityId = entityId;
+        this.section = null;
         this.type = type;
         this.name = name;
         this.configurationVersion = configurationVersion;
@@ -91,6 +97,7 @@ public class CalculatedField extends BaseData<CalculatedFieldId> implements HasN
         super(calculatedField);
         this.tenantId = calculatedField.tenantId;
         this.entityId = calculatedField.entityId;
+        this.section = calculatedField.section;
         this.type = calculatedField.type;
         this.name = calculatedField.name;
         this.debugMode = calculatedField.debugMode;
@@ -130,6 +137,7 @@ public class CalculatedField extends BaseData<CalculatedFieldId> implements HasN
                 .append("CalculatedField[")
                 .append("tenantId=").append(tenantId)
                 .append(", entityId=").append(entityId)
+                .append(", section='").append(section)
                 .append(", type='").append(type)
                 .append(", name='").append(name)
                 .append(", configurationVersion=").append(configurationVersion)

@@ -15,6 +15,12 @@
 ///
 
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { AddEntityDialogComponent } from '@home/components/entity/add-entity-dialog.component';
@@ -184,6 +190,7 @@ import {
 import { EntityChipsComponent } from '@home/components/entity/entity-chips.component';
 import { DashboardViewComponent } from '@home/components/dashboard-view/dashboard-view.component';
 import { CalculatedFieldsTableComponent } from '@home/components/calculated-fields/calculated-fields-table.component';
+import { CalculatedDataSectionsComponent } from '@home/components/calculated-fields/calculated-data-sections.component';
 import { CalculatedFieldDialogComponent } from '@home/components/calculated-fields/components/dialog/calculated-field-dialog.component';
 import {
   EntityDebugSettingsButtonComponent
@@ -350,6 +357,7 @@ import { AIModelDialogComponent } from '@home/components/ai-model/ai-model-dialo
       EntityChipsComponent,
       DashboardViewComponent,
       CalculatedFieldsTableComponent,
+      CalculatedDataSectionsComponent,
       CalculatedFieldDialogComponent,
       CalculatedFieldArgumentsTableComponent,
       CalculatedFieldArgumentPanelComponent,
@@ -362,6 +370,12 @@ import { AIModelDialogComponent } from '@home/components/ai-model/ai-model-dialo
   imports: [
     CommonModule,
     SharedModule,
+    TranslateModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
     SharedHomeComponentsModule,
     WidgetConfigComponentsModule,
     BasicWidgetConfigModule,
@@ -497,6 +511,7 @@ import { AIModelDialogComponent } from '@home/components/ai-model/ai-model-dialo
     EntityChipsComponent,
     DashboardViewComponent,
     CalculatedFieldsTableComponent,
+    CalculatedDataSectionsComponent,
     CalculatedFieldDialogComponent,
     CalculatedFieldArgumentsTableComponent,
     CalculatedFieldArgumentPanelComponent,

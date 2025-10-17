@@ -46,6 +46,10 @@
               </mat-error>
             }
           </mat-form-field>
+          <mat-form-field class="flex-1" appearance="outline" subscriptSizing="dynamic">
+            <mat-label>{{ 'calculated-data.section' | translate }}</mat-label>
+            <input matInput maxlength="255" formControlName="section">
+          </mat-form-field>
           <!--<tb-entity-debug-settings-button
             formControlName="debugSettings"
             [class.mb-5]="fieldFormGroup.get('name').errors && fieldFormGroup.get('name').touched"

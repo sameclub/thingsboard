@@ -16,8 +16,8 @@
 
 -->
 <mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN && !isEdit"
-         label="{{ 'entity.type-calculated-fields' | translate }}" #calculatedFieldsTab="matTab">
-  <tb-calculated-fields-table [active]="calculatedFieldsTab.isActive" [entityId]="entity.id" [entityName]="entity.name"/>
+         label="{{ 'calculated-data.sections' | translate }}" #calculatedDataTab="matTab">
+  <tb-calculated-data-sections [active]="calculatedDataTab.isActive" [entityId]="entity.id"/>
 </mat-tab>
 <mat-tab *ngIf="entity && !isEdit" #auditLogsTab="matTab"
          label="{{ 'audit-log.audit-logs' | translate }}">

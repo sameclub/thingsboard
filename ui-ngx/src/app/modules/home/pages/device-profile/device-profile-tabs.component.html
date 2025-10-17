@@ -40,9 +40,13 @@
     </div>
   </div>
 </mat-tab>
-<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN && !isEdit"
+<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN"
          label="{{ 'entity.type-calculated-fields' | translate }}" #calculatedFieldsTab="matTab">
-  <tb-calculated-fields-table [active]="calculatedFieldsTab.isActive" [entityId]="entity.id" [entityName]="entity.name"/>
+  <tb-calculated-fields-table [active]="calculatedFieldsTab.isActive" [entityId]="entity.id"/>
+</mat-tab>
+<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN && !isEdit"
+         label="{{ 'calculated-data.sections' | translate }}" #calculatedDataTab="matTab">
+  <tb-calculated-data-sections [active]="calculatedDataTab.isActive" [entityId]="entity.id"/>
 </mat-tab>
 <!--<mat-tab *ngIf="entity" #alarmRules="matTab"
          label="{{ this.detailsForm.get('profileData.alarms').value?.length

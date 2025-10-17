@@ -65,6 +65,7 @@ export class CalculatedFieldDialogComponent extends DialogComponent<CalculatedFi
 
   fieldFormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.pattern(oneSpaceInsideRegex), Validators.maxLength(255)]],
+    section: [''],
     type: [CalculatedFieldType.SIMPLE],
     debugSettings: [],
     configuration: this.fb.group({
@@ -136,7 +137,7 @@ export class CalculatedFieldDialogComponent extends DialogComponent<CalculatedFi
   }
 
   get fromGroupValue(): CalculatedField {
-    const { configuration, type, name, ...rest } = this.fieldFormGroup.value;
+    const { configuration, type, name, section, ...rest } = this.fieldFormGroup.value;
     const { expressionSIMPLE, expressionSCRIPT, output, ...restConfig } = configuration;
     return {
       configuration: {
@@ -145,6 +146,7 @@ export class CalculatedFieldDialogComponent extends DialogComponent<CalculatedFi
         output: { ...output, name: output.name?.trim() ?? '' }
       },
       name: name.trim(),
+      section: section?.trim() || undefined,
       type,
       ...rest,
     } as CalculatedField;

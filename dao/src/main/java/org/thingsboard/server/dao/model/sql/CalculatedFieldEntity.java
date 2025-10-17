@@ -46,6 +46,7 @@ import static org.thingsboard.server.dao.model.ModelConstants.CALCULATED_FIELD_T
 import static org.thingsboard.server.dao.model.ModelConstants.CALCULATED_FIELD_TYPE;
 import static org.thingsboard.server.dao.model.ModelConstants.CALCULATED_FIELD_VERSION;
 import static org.thingsboard.server.dao.model.ModelConstants.DEBUG_SETTINGS;
+import static org.thingsboard.server.dao.model.ModelConstants.CALCULATED_FIELD_SECTION;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -67,6 +68,9 @@ public class CalculatedFieldEntity extends BaseVersionedEntity<CalculatedField> 
 
     @Column(name = CALCULATED_FIELD_NAME)
     private String name;
+
+    @Column(name = CALCULATED_FIELD_SECTION)
+    private String section;
 
     @Column(name = CALCULATED_FIELD_CONFIGURATION_VERSION)
     private int configurationVersion;
@@ -93,6 +97,7 @@ public class CalculatedFieldEntity extends BaseVersionedEntity<CalculatedField> 
         this.entityId = calculatedField.getEntityId().getId();
         this.type = calculatedField.getType().name();
         this.name = calculatedField.getName();
+        this.section = calculatedField.getSection();
         this.configurationVersion = calculatedField.getConfigurationVersion();
         this.configuration = JacksonUtil.valueToTree(calculatedField.getConfiguration());
         this.version = calculatedField.getVersion();
@@ -107,6 +112,7 @@ public class CalculatedFieldEntity extends BaseVersionedEntity<CalculatedField> 
         calculatedField.setEntityId(EntityIdFactory.getByTypeAndUuid(entityType, entityId));
         calculatedField.setType(CalculatedFieldType.valueOf(type));
         calculatedField.setName(name);
+        calculatedField.setSection(section);
         calculatedField.setConfigurationVersion(configurationVersion);
         calculatedField.setConfiguration(JacksonUtil.treeToValue(configuration, CalculatedFieldConfiguration.class));
         calculatedField.setVersion(version);

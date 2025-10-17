@@ -41,6 +41,10 @@
          label="{{ 'entity.type-calculated-fields' | translate }}" #calculatedFieldsTab="matTab">
   <tb-calculated-fields-table [active]="calculatedFieldsTab.isActive" [entityId]="entity.id"/>
 </mat-tab>
+<mat-tab *ngIf="entity && authUser.authority === authorities.TENANT_ADMIN"
+         label="{{ 'calculated-data.sections' | translate }}" #calculatedDataTab="matTab">
+  <tb-calculated-data-sections [active]="calculatedDataTab.isActive" [entityId]="entity.id"/>
+</mat-tab>
 <!--<mat-tab *ngIf="entity"
          label="{{ 'alarm.alarms' | translate }}" #alarmsTab="matTab">
   <tb-alarm-table [active]="alarmsTab.isActive" [entityId]="entity.id"></tb-alarm-table>

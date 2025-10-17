@@ -1080,6 +1080,15 @@
             "use-latest-timestamp": "如果启用，将使用参数遥测中的最新时间戳来持久化计算值，而不是服务器时间。"
         }
     },
+    "calculated-data": {
+        "all": "所有",
+        "section": "分组",
+        "sections": "分组",
+        "telemetry": "遥测",
+        "attributes": "属性",
+        "no-found": "未找到计算数据",
+        "uncategorized": "未分类"
+    },
     "confirm-on-exit": {
         "message": "有未保存的更改，确定要离开此页吗？",
         "html-message": "有未保存的更改。<br/> 确定要离开此页面吗？",
