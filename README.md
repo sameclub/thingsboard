@@ -1,43 +1,104 @@
-# ThingsBoard 
-[![ThingsBoard Builds Server Status](https://img.shields.io/teamcity/build/e/ThingsBoard_Build?label=TB%20builds%20server&server=https%3A%2F%2Fbuilds.thingsboard.io&logo=data:image/png;base64,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&labelColor=305680)](https://builds.thingsboard.io/viewType.html?buildTypeId=ThingsBoard_Build&guest=1)
+# ThingsBoard Server (Backend)
 
-ThingsBoard is an open-source IoT platform for data collection, processing, visualization, and device management.
+Multi‑module Maven project for the ThingsBoard backend. The Spring Boot app entrypoint and packaging live in `thingsboard/application`. The Angular UI resides under `thingsboard/ui-ngx`.
 
-<img src="./img/logo.png?raw=true" width="100" height="100">
+## Modules
+- `application` – Spring Boot application, packaging, runtime config
+- `common` – shared DTOs, utils, constants
+- `dao` – persistence layer and repositories
+- `rule-engine` – rule nodes and processing pipeline
+- `transport` – MQTT/CoAP/HTTP transports; `netty-mqtt` low‑level MQTT
+- `ui-ngx` – Angular web UI (built and served separately in dev)
+- `tools`, `rest-client`, `monitoring`, `edqs` – auxiliary modules
 
+## Prerequisites
+- JDK 17
+- Maven 3.9+
+- Node.js 18+ and Yarn (only if working on the UI)
 
-## Documentation
+## Build and Test
+- Build (skip tests):
+  - `cd thingsboard && mvn clean install -DskipTests`
+- Run tests:
+  - `cd thingsboard && mvn test`
 
-ThingsBoard documentation is hosted on [thingsboard.io](https://thingsboard.io/docs).
+## Run the Backend Locally
+1) Build the project (see above).
+2) Start the server:
+   - `java -jar thingsboard/application/target/thingsboard-*.jar`
+3) Default HTTP port is `8080`. Change via env var `HTTP_BIND_PORT`.
 
-## IoT use cases
+### Configuration
+Primary config file: `thingsboard/application/src/main/resources/thingsboard.yml`.
+Most settings can be overridden with environment variables. Common overrides:
+- HTTP server: `HTTP_BIND_ADDRESS`, `HTTP_BIND_PORT`, `SSL_ENABLED`, `SSL_*`
+- SQL database: `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`
+- Cache: `CACHE_TYPE` (`caffeine` or `redis`), `REDIS_HOST`, `REDIS_PORT`
+- Queue: `TB_QUEUE_TYPE` (`in-memory` or `kafka`), `TB_KAFKA_SERVERS`
+- Time series DB: `DATABASE_TS_TYPE`, `DATABASE_TS_LATEST_TYPE`, `CASSANDRA_URL`
 
-[**Smart energy**](https://thingsboard.io/smart-energy/)
-[![Smart energy](https://user-images.githubusercontent.com/8308069/152984256-eb48564a-645c-468d-912b-f554b63104a5.gif "Smart energy")](https://thingsboard.io/smart-energy/)
+### Using Docker Compose Services from this repo
+If you run dependencies via `tb/docker-compose.yml` but run the backend JAR on your host, export these env vars to match published ports:
 
-[**SCADA Swimming pool**](https://thingsboard.io/use-cases/scada/)
-[![SCADA Swimming pool](https://github.com/user-attachments/assets/0878a2f5-d358-47c5-b295-03b4533685cf "SCADA Swimming pool")](https://thingsboard.io/use-cases/scada/)
+```
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/thingsboard
+export SPRING_DATASOURCE_USERNAME=postgres
+export SPRING_DATASOURCE_PASSWORD=postgres
 
-[**Fleet tracking**](https://thingsboard.io/fleet-tracking/)
-[![Fleet tracking](https://user-images.githubusercontent.com/8308069/152984528-0054ed55-8b8b-4cda-ba45-02fe95a81222.gif "Fleet tracking")](https://thingsboard.io/fleet-tracking/)
+export CACHE_TYPE=redis
+export REDIS_HOST=localhost
+export REDIS_PORT=6380
 
-[**Smart farming**](https://thingsboard.io/smart-farming/)
-[![Smart farming](https://user-images.githubusercontent.com/8308069/152984443-a98b7d3d-ff7a-4037-9011-e71e1e6f755f.gif "Smart farming")](https://thingsboard.io/smart-farming/)
+export TB_QUEUE_TYPE=kafka
+export TB_KAFKA_SERVERS=localhost:9092
 
-[**IoT Rule Engine**](https://thingsboard.io/docs/user-guide/rule-engine-2-0/re-getting-started/)
-[![IoT Rule Engine](https://img.thingsboard.io/demo/send-email-rule-chain.gif "IoT Rule Engine")](https://thingsboard.io/docs/user-guide/rule-engine-2-0/re-getting-started/)
+export DATABASE_TS_TYPE=cassandra
+export DATABASE_TS_LATEST_TYPE=cassandra
+export CASSANDRA_URL=localhost:9042
 
-[**Smart metering**](https://thingsboard.io/smart-metering/)
-[![Smart metering](https://user-images.githubusercontent.com/8308069/31455788-6888a948-aec1-11e7-9819-410e0ba785e0.gif "Smart metering")](https://thingsboard.io/smart-metering/)
+java -jar thingsboard/application/target/thingsboard-*.jar
+```
 
-## Getting Started
+## UI Development (Angular)
+- Install deps: `cd thingsboard/ui-ngx && yarn install --frozen-lockfile`
+- Start dev server: `cd thingsboard/ui-ngx && yarn start`
+  - Serves the UI on `http://localhost:4200` and proxies API to the backend on `http://localhost:8080` (see `thingsboard/ui-ngx/proxy.conf.js`).
+- Build UI: `cd thingsboard/ui-ngx && yarn build` or `yarn build:prod`
 
-Collect and Visualize your IoT data in minutes by following this [guide](https://thingsboard.io/docs/getting-started-guides/helloworld/).
+## Docker Compose (Local Stack)
+This repo includes a compose file for Postgres, Cassandra, Kafka, Valkey/Redis, and a ThingsBoard node container.
 
-## Support
+- Start the stack (dependencies + node):
+  - `cd tb && docker compose up -d`
+- Initialize DB schema and load demo data (first run):
+  - `cd tb && docker compose run --rm -e INSTALL_TB=true -e LOAD_DEMO=true node`
+- Follow logs:
+  - `cd tb && docker compose logs -f node`
+- Stop:
+  - `cd tb && docker compose stop`
 
- - [Stackoverflow](http://stackoverflow.com/questions/tagged/thingsboard)
+Notes:
+- The node container image is built from `tb/Dockerfile` and expects `tb/thingsboard.deb` (already present in this repo). Logging is configured via `tb/logback.xml`.
 
-## Licenses
+## Logs & Config
+- Backend log config: `thingsboard/application/src/main/resources/logback.xml`
+- App config: `thingsboard/application/src/main/resources/thingsboard.yml`
 
-This project is released under [Apache 2.0 License](./LICENSE).
+## Troubleshooting
+- Port in use (8080): set `HTTP_BIND_PORT` to a free port.
+- Kafka/Redis/Cassandra connection errors: verify `TB_KAFKA_SERVERS`, `REDIS_*`, `CASSANDRA_URL`, and that services are running (`docker compose ps`).
+- Postgres connectivity: confirm `SPRING_DATASOURCE_URL` points to `localhost:5433` when using compose, or `5432` for a local install.
+
+## Conventions
+- Java code style: 4 spaces; packages `org.thingsboard...`; classes `PascalCase`; methods/fields `camelCase`.
+- Follow Conventional Commits (e.g., `feat:`, `fix:`, `docs:`) and keep changes focused.
+
+## Handy Commands
+- Backend build (skip tests): `cd thingsboard && mvn clean install -DskipTests`
+- Backend tests: `cd thingsboard && mvn test`
+- Run backend JAR: `java -jar thingsboard/application/target/thingsboard-*.jar`
+- Frontend dev: `cd thingsboard/ui-ngx && yarn start`
+- Frontend lint: `cd thingsboard/ui-ngx && yarn lint`
+- Docker compose: `cd tb && docker compose up -d`
+
+For deeper design notes and feature plans, see `docs/`.
