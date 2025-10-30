@@ -98,22 +98,8 @@
             <groupId>org.eclipse.leshan</groupId>
             <artifactId>leshan-server-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.californium</groupId>
-            <artifactId>californium-core</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
+        
+        
         <dependency>
             <groupId>org.eclipse.californium</groupId>
             <artifactId>californium-core</artifactId>
@@ -122,12 +108,7 @@
 <!--            <groupId>org.eclipse.californium</groupId>-->
 <!--            <artifactId>scandium</artifactId>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>org.eclipse.californium</groupId>
-            <artifactId>element-connector</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
+        
     </dependencies>
 
     <build>

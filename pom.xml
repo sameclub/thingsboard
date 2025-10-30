@@ -69,14 +69,13 @@
         <paho.client.version>1.2.5</paho.client.version>
         <paho.mqttv5.client.version>1.2.5</paho.mqttv5.client.version>
         <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
-        <surefire.version>3.2.5</surefire.version>
+        
         <jar-plugin.version>3.4.0</jar-plugin.version>
         <springdoc-swagger.version>2.8.8TB</springdoc-swagger.version>
         <swagger-annotations.version>2.2.30</swagger-annotations.version>
         <spatial4j.version>0.8</spatial4j.version>
         <jts.version>1.19.0</jts.version>
         <bouncycastle.version>1.78.1</bouncycastle.version>
-        <winsw.version>2.0.1</winsw.version>
         <sonar.exclusions>org/thingsboard/server/gen/**/*,
             org/thingsboard/server/extensions/core/plugin/telemetry/gen/**/*
         </sonar.exclusions>
@@ -441,31 +440,7 @@
                                 </execution>
                             </executions>
                         </plugin>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-dependency-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <id>copy-winsw-service</id>
-                                    <phase>${pkg.package.phase}</phase>
-                                    <goals>
-                                        <goal>copy</goal>
-                                    </goals>
-                                    <configuration>
-                                        <artifactItems>
-                                            <artifactItem>
-                                                <groupId>com.sun.winsw</groupId>
-                                                <artifactId>winsw</artifactId>
-                                                <classifier>bin</classifier>
-                                                <type>exe</type>
-                                                <destFileName>service.exe</destFileName>
-                                            </artifactItem>
-                                        </artifactItems>
-                                        <outputDirectory>${pkg.win.dist}</outputDirectory>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
+                        <!-- Windows service EXE no longer copied (we keep only JAR/DEB artifacts) -->
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-jar-plugin</artifactId>
@@ -513,9 +488,9 @@
                             <configuration>
                                 <gradleProjectDirectory>${main.dir}/packaging/${pkg.type}</gradleProjectDirectory>
                                 <tasks>
+                                    <!-- Keep default Gradle build and only Debian package -->
                                     <task>build</task>
                                     <task>buildDeb</task>
-                                    <task>buildRpm</task>
                                 </tasks>
                                 <args>
                                     <arg>-PpackagingDir=${main.dir}/packaging</arg>
@@ -542,24 +517,13 @@
                                 </execution>
                             </executions>
                         </plugin>
+                        <!-- Skip Windows ZIP assembly to avoid .zip/.exe outputs -->
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-assembly-plugin</artifactId>
                             <configuration>
-                                <finalName>${pkg.name}</finalName>
-                                <descriptors>
-                                    <descriptor>${main.dir}/packaging/${pkg.type}/assembly/windows.xml</descriptor>
-                                </descriptors>
+                                <skipAssembly>true</skipAssembly>
                             </configuration>
-                            <executions>
-                                <execution>
-                                    <id>assembly</id>
-                                    <phase>${pkg.package.phase}</phase>
-                                    <goals>
-                                        <goal>single</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
                         </plugin>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
@@ -654,17 +618,7 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>1.12.0</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${surefire.version}</version>
-                    <configuration>
-                        <argLine>
-                            -XX:+UseStringDeduplication -XX:MaxGCPauseMillis=20
-                            --add-opens java.base/java.lang.reflect=ALL-UNNAMED
-                        </argLine>
-                    </configuration>
-                </plugin>
+                
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
@@ -727,7 +681,6 @@
                             <goals>
                                 <goal>compile</goal>
                                 <goal>compile-custom</goal>
-                                <goal>test-compile</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -983,20 +936,17 @@
                 <groupId>org.thingsboard</groupId>
                 <artifactId>tools</artifactId>
                 <version>${project.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.thingsboard</groupId>
                 <artifactId>rest-client</artifactId>
                 <version>${project.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.thingsboard</groupId>
                 <artifactId>dao</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>javax.xml.bind</groupId>
@@ -1007,7 +957,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring-boot.version}</version>
-                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>com.vaadin.external.google</groupId>
@@ -1024,7 +973,6 @@
                 <groupId>com.github.springtestdbunit</groupId>
                 <artifactId>spring-test-dbunit</artifactId>
                 <version>${spring-test-dbunit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -1054,7 +1002,6 @@
             <dependency>
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-test</artifactId>
-                <scope>test</scope>
                 <version>${curator.version}</version>
             </dependency>
             <dependency>
@@ -1164,7 +1111,6 @@
                 <artifactId>californium-core</artifactId>
                 <version>${californium.version}</version>
                 <type>test-jar</type>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.californium</groupId>
@@ -1176,7 +1122,6 @@
                 <artifactId>element-connector</artifactId>
                 <version>${californium.version}</version>
                 <type>test-jar</type>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.californium</groupId>
@@ -1287,7 +1232,6 @@
                 <groupId>io.takari.junit</groupId>
                 <artifactId>takari-cpsuite</artifactId>
                 <version>${takari-cpsuite.version}</version>
-                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>junit</groupId>
@@ -1304,31 +1248,26 @@
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testng.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.github.bonigarcia</groupId>
                 <artifactId>webdrivermanager</artifactId>
                 <version>${webdrivermanager.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-testng</artifactId>
                 <version>${allure-testng.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.dbunit</groupId>
                 <artifactId>dbunit</artifactId>
                 <version>${dbunit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -1385,14 +1324,6 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.winsw</groupId>
-                <artifactId>winsw</artifactId>
-                <version>${winsw.version}</version>
-                <classifier>bin</classifier>
-                <type>exe</type>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.javadelight</groupId>
@@ -1520,7 +1451,6 @@
                 <groupId>org.java-websocket</groupId>
                 <artifactId>Java-WebSocket</artifactId>
                 <version>${java-websocket.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.thingsboard</groupId>
@@ -1589,7 +1519,6 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
-                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>junit</groupId>
@@ -1603,13 +1532,11 @@
                 <groupId>software.xdev</groupId>
                 <artifactId>testcontainers-junit4-mock</artifactId>
                 <version>${testcontainers-junit4-mock.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${testcontainers.version}</version>
-                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>junit</groupId>
@@ -1621,13 +1548,11 @@
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>zt-exec</artifactId>
                 <version>${zeroturnaround.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mock-server</groupId>
                 <artifactId>mockserver-netty</artifactId>
                 <version>${mock-server.version}</version>
-                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>commons-logging</groupId>
@@ -1644,13 +1569,11 @@
                 <groupId>org.mock-server</groupId>
                 <artifactId>mockserver-client-java</artifactId>
                 <version>${mock-server.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jeasy</groupId>
                 <artifactId>easy-random-core</artifactId>
                 <version>${jeasy.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.opensmpp</groupId>
