@@ -232,10 +232,12 @@ export class DevicesTableConfigResolver  {
           entity => checkBoxCell(entity.customerIsPublic), () => ({})),
       );
     }
+    */
+    // Show gateway indicator column
     columns.push(
       new EntityTableColumn<DeviceInfo>('gateway', 'device.is-gateway', '60px',
         entity => checkBoxCell(entity.additionalInfo && entity.additionalInfo.gateway), () => ({}), false)
-    );*/
+    );
     return columns;
   }
 
@@ -430,16 +432,16 @@ export class DevicesTableConfigResolver  {
       panelClass: ['tb-dialog', 'tb-fullscreen-dialog']
     }).afterClosed().subscribe(
       (res) => {
-        if (res) {
+      if (res) {
           this.store.pipe(select(selectUserSettingsProperty( 'notDisplayConnectivityAfterAddDevice'))).pipe(
             take(1)
           ).subscribe((settings: boolean) => {
             if(!settings) {
               this.checkConnectivity(null, res.id, true);
             } else {
-              this.config.updateData();
-            }
-          });
+        this.config.updateData();
+      }
+    });
         }
       }
     );

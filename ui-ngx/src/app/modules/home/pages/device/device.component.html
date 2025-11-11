@@ -143,9 +143,9 @@
       </tb-device-data>
       <div formGroupName="additionalInfo" class="flex flex-col">
         <div class="toggle-group">
-          <!--          <mat-slide-toggle formControlName="gateway" style="min-width: 165px">
+          <mat-slide-toggle formControlName="gateway" style="min-width: 165px">
             {{ 'device.is-gateway' | translate }}
-          </mat-slide-toggle>-->
+          </mat-slide-toggle>
           <mat-slide-toggle *ngIf="entityForm.get('additionalInfo.gateway').value"
                             formControlName="overwriteActivityTime">
             {{ 'device.overwrite-activity-time' | translate }}
