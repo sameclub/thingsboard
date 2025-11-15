@@ -80,13 +80,14 @@ export class DeviceTelemetryChartsComponent implements OnInit, OnDestroy, OnChan
   }
 
   ngOnInit(): void {
-    if (this.entity && this.active) {
-      this.loadTelemetryKeys();
-    }
+    // Initial loading is handled in ngOnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.active && this.active && this.entity) {
+    const entityChanged = !!changes.entity && !changes.entity.firstChange;
+    const becameActive = !!changes.active && this.active;
+    if ((entityChanged || becameActive) && this.entity && this.active) {
+      this.resetChartsState();
       this.loadTelemetryKeys();
     }
   }
@@ -136,6 +137,12 @@ export class DeviceTelemetryChartsComponent implements OnInit, OnDestroy, OnChan
     this.aliasController = new AliasController(this.utils, this.entityService, this.translate,
       // @ts-ignore – minimal state controller holder
       () => this.stateController, entityAliases, filters);
+  }
+
+  private resetChartsState(): void {
+    this.telemetryKeys = [];
+    this.widgets = [];
+    this.aliasController = null;
   }
 
   private createWidgets(): void {

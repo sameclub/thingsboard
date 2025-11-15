@@ -61,6 +61,8 @@ export class CalculatedDataSectionsComponent {
   // Cache flag to avoid redundant loading
   private hasLoadedData = false;
 
+  private lastEntityId: EntityId = null;
+
   readonly OutputType = OutputType;
   readonly CalculatedFieldType = CalculatedFieldType;
 
@@ -70,13 +72,19 @@ export class CalculatedDataSectionsComponent {
               private cd: ChangeDetectorRef,
               private destroyRef: DestroyRef) {
     effect(() => {
-      if (this.active() && !this.hasLoadedData) {
+      const isActive = this.active();
+      const currentEntityId = this.entityId();
+      const entityChanged = !this.entityIdsEqual(this.lastEntityId, currentEntityId);
+      if (isActive && currentEntityId && (!this.hasLoadedData || entityChanged)) {
+        this.lastEntityId = currentEntityId;
+        this.hasLoadedData = false;
         this.loadAll();
       }
     });
   }
 
   refresh(): void {
+    this.lastEntityId = this.entityId();
     this.hasLoadedData = false;
     this.loadAll();
   }
@@ -247,8 +255,18 @@ export class CalculatedDataSectionsComponent {
       arr.push(i);
       mapGroups.set(i.section, arr);
     });
-    this.groups = Array.from(mapGroups.entries())
+      this.groups = Array.from(mapGroups.entries())
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(([key, items]) => ({ key, items }));
+  }
+
+  private entityIdsEqual(a?: EntityId | null, b?: EntityId | null): boolean {
+    if (!a && !b) {
+      return true;
+    }
+    if (!a || !b) {
+      return false;
+    }
+    return a.id === b.id && a.entityType === b.entityType;
   }
 }
