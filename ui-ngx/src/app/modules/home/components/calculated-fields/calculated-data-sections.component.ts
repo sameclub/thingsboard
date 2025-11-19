@@ -30,7 +30,7 @@ import { AttributeService } from '@core/http/attribute.service';
 import { PageLink } from '@shared/models/page/page-link';
 import { Direction } from '@shared/models/page/sort-order';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
 interface OutputItem {
@@ -97,6 +97,14 @@ export class CalculatedDataSectionsComponent {
   private _items: OutputItem[] = [];
 
   loadAll(): void {
+    const entityId = this.entityId();
+    if (!entityId) {
+      this.loading = false;
+      this.groups = [];
+      this._items = [];
+      this.cd.markForCheck();
+      return;
+    }
     this.loading = true;
     this.groups = [];
     this._items = [];
@@ -104,7 +112,7 @@ export class CalculatedDataSectionsComponent {
 
     const pageLink = new PageLink(100, 0, null, { property: 'createdTime', direction: Direction.DESC });
     const all: CalculatedField[] = [];
-    const fetch = (pl: PageLink): Observable<CalculatedField[]> => this.calculatedFieldsService.getCalculatedFields(this.entityId(), pl).pipe(
+    const fetch = (pl: PageLink): Observable<CalculatedField[]> => this.calculatedFieldsService.getCalculatedFields(entityId, pl).pipe(
       switchMap(page => {
         all.push(...page.data);
         if (page.hasNext) {
@@ -153,98 +161,69 @@ export class CalculatedDataSectionsComponent {
 
         this._items = items;
 
-        const ts$ = tsKeys.length ? this.attributeService.getEntityTimeseriesLatest(this.entityId(), tsKeys)
-          .pipe(map((tsData: TimeseriesData) => tsData)) : of({} as TimeseriesData);
+        const observables: Observable<any>[] = [];
 
-        const attrsScopes = Object.keys(attrKeysByScope);
-        const attrPromises = attrsScopes.map(scope =>
-          this.attributeService.getEntityAttributes(this.entityId(), scope as AttributeScope, attrKeysByScope[scope])
-        );
-
-        return ts$.pipe(
-          switchMap(tsData => {
-            if (attrPromises.length) {
-              return (attrPromises.length === 1 ? attrPromises[0] : (attrPromises as Observable<any>[]).reduce((acc, o$) => acc.pipe(switchMap(_ => o$)), of([]))).pipe(
-                map(() => tsData)
-              );
-            } else {
-              return of(tsData);
-            }
-          })
-        );
-      })
-    ).subscribe({
-      next: () => {
-        // Fetch latest again to assign values because we didn't retain attr results above in combined stream;
-        // Simpler approach: run separate assigns below.
-        this.assignLatestValues().pipe(take(1)).subscribe(() => {
-          this.groupAndApply(this._items);
-          this.loading = false;
-          this.hasLoadedData = true;
-          this.cd.markForCheck();
-        }, _ => {
-          this.loading = false;
-          this.cd.markForCheck();
-        });
-      },
-      error: _ => {
-        this.loading = false;
-        this.cd.markForCheck();
-      }
-    });
-  }
-
-  private assignLatestValues(): Observable<void> {
-    const tsKeys = this._items.filter(i => i.type === OutputType.Timeseries).map(i => i.key);
-    const attrByScope: Record<string, string[]> = {};
-    this._items.filter(i => i.type === OutputType.Attribute).forEach(i => {
-      const scope = i.scope || AttributeScope.SERVER_SCOPE;
-      if (!attrByScope[scope]) {
-        attrByScope[scope] = [];
-      }
-      if (!attrByScope[scope].includes(i.key)) {
-        attrByScope[scope].push(i.key);
-      }
-    });
-
-    const ts$ = tsKeys.length ? this.attributeService.getEntityTimeseriesLatest(this.entityId(), tsKeys) : of({} as TimeseriesData);
-    const attrsScopes = Object.keys(attrByScope);
-
-    return ts$.pipe(
-      switchMap(tsData => {
-        // assign ts values
-        this._items.filter(i => i.type === OutputType.Timeseries).forEach(i => {
-          const arr = (tsData as TimeseriesData)[i.key];
-          if (arr && arr.length) {
-            i.ts = arr[0].ts;
-            i.value = arr[0].value;
-          }
-        });
-        if (!attrsScopes.length) {
-          return of(void 0);
+        // 1. Timeseries
+        if (tsKeys.length) {
+          observables.push(this.attributeService.getEntityTimeseriesLatest(entityId, tsKeys));
+        } else {
+          observables.push(of({} as TimeseriesData));
         }
-        // fetch and assign attributes per scope sequentially
-        const run = (index: number): Observable<void> => {
-          if (index >= attrsScopes.length) {
-            return of(void 0);
-          }
-          const scope = attrsScopes[index] as AttributeScope;
-          return this.attributeService.getEntityAttributes(this.entityId(), scope, attrByScope[scope]).pipe(
-            switchMap(attrs => {
+
+        // 2. Attributes (Parallel)
+        const attrsScopes = Object.keys(attrKeysByScope);
+        attrsScopes.forEach(scope => {
+          observables.push(this.attributeService.getEntityAttributes(entityId, scope as AttributeScope, attrKeysByScope[scope]));
+        });
+
+        return forkJoin(observables).pipe(
+          map((results) => {
+            const tsData = results[0] as TimeseriesData;
+            const attrResults = results.slice(1);
+
+            // Assign TS values
+            this._items.filter(i => i.type === OutputType.Timeseries).forEach(i => {
+              const arr = tsData[i.key];
+              if (arr && arr.length) {
+                i.ts = arr[0].ts;
+                i.value = arr[0].value;
+              }
+            });
+
+            // Assign Attribute values
+            attrsScopes.forEach((scope, index) => {
+              const attrs = attrResults[index] as any[];
               attrs.forEach(a => {
-                const item = this._items.find(i => i.type === OutputType.Attribute && (i.scope || AttributeScope.SERVER_SCOPE) === scope && i.key === a.key);
+                const item = this._items.find(i => i.type === OutputType.Attribute &&
+                                            (i.scope || AttributeScope.SERVER_SCOPE) === scope &&
+                                            i.key === a.key);
                 if (item) {
                   item.ts = a.lastUpdateTs;
                   item.value = a.value;
                 }
               });
-              return run(index + 1);
-            })
-          );
-        };
-        return run(0);
+            });
+          })
+        );
       })
-    );
+    ).subscribe({
+      next: () => {
+        if (!this.entityIdsEqual(this.lastEntityId, entityId)) {
+          return;
+        }
+        this.groupAndApply(this._items);
+        this.loading = false;
+        this.hasLoadedData = true;
+        this.cd.markForCheck();
+      },
+      error: _ => {
+        if (!this.entityIdsEqual(this.lastEntityId, entityId)) {
+          return;
+        }
+        this.loading = false;
+        this.cd.markForCheck();
+      }
+    });
   }
 
   private groupAndApply(items: OutputItem[]) {
