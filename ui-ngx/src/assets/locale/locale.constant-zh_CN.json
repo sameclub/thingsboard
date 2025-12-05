@@ -1566,6 +1566,9 @@
         "assign-to-customer-text": "请选择客户分配设备",
         "device-details": "设备详细信息",
         "telemetry-charts": "遥测数据图表",
+        "telemetry-keys-filter": "遥测数据字段",
+        "telemetry-keys-selected": "{ count, plural, =0 {请选择要展示的字段} other {已选择 # 个字段} }",
+        "telemetry-keys-required": "请选择至少一个遥测数据字段以显示图表。",
         "add-device-text": "添加设备",
         "credentials": "凭据",
         "manage-credentials": "管理凭据",
@@ -4887,7 +4890,7 @@
         "days": "天"
     },
     "timewindow": {
-        "timewindow": "时间窗口",
+        "timewindow": "时间范围",
         "timewindow-settings": "设置时间窗口",
         "years": "{ years, plural, =1 {1年 } other {#年 } }",
         "years-short": "{{ years }}y",
@@ -4918,10 +4921,10 @@
         "last-prefix": "最后",
         "period": "从{{ startTime }}到{{ endTime }}",
         "edit": "编辑时间窗口",
-        "date-range": "日期范围",
+        "date-range": "时间范围",
         "for-all-time": "所有时间",
         "last": "最后",
-        "time-period": "时间段",
+        "time-period": "时间范围",
         "hide": "隐藏",
         "interval": "区间",
         "just-now": "刚刚",
@@ -4955,7 +4958,9 @@
         "default-agg-interval": "默认分组时间间隔",
         "edit-intervals-list-hint": "可以指定可用的时间间隔选项列表。",
         "edit-grouping-intervals-list-hint": "可以配置分组时间间隔列表和默认分组时间间隔。",
-        "all": "全部"
+        "all": "全部",
+        "start-time": "开始时间",
+        "end-time": "结束时间"
     },
     "tooltip": {
         "trigger": "触发",

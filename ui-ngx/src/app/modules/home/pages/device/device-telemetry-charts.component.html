@@ -25,22 +25,97 @@
     <span class="no-data-text">{{ 'attribute.no-telemetry-text' | translate }}</span>
   </div>
 
-  <div *ngIf="!loading && telemetryKeys.length > 0" class="charts-grid">
-    <tb-dashboard
-      [aliasController]="aliasController"
-      [stateController]="stateController"
-      [dashboardTimewindow]="dashboardTimewindow"
-      [widgets]="widgets"
-      [autofillHeight]="false"
-      [columns]="24"
-      [isEdit]="false"
-      [isPreview]="false"
-      [isMobileDisabled]="true"
-      [isEditActionEnabled]="false"
-      [isRemoveActionEnabled]="false">
-    </tb-dashboard>
+  <div *ngIf="!loading && telemetryKeys.length > 0" class="telemetry-content">
+    <div class="telemetry-controls">
+      <mat-form-field class="telemetry-select-field" appearance="fill">
+        <mat-label>{{ 'device.telemetry-keys-filter' | translate }}</mat-label>
+        <mat-select
+          #telemetryKeysSelect
+          [formControl]="telemetryKeysControl"
+          multiple
+          (selectionChange)="keepTelemetrySelectOpen(telemetryKeysSelect)">
+          <mat-select-trigger>
+            {{ 'device.telemetry-keys-selected' | translate:{ count: selectedTelemetryKeys.length } }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let keyName of telemetryKeys; trackBy: trackByKeyName" [value]="keyName">
+            {{ keyName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="time-range-field" appearance="fill">
+        <mat-label>{{ 'timewindow.time-period' | translate }}</mat-label>
+        <mat-select
+          [(ngModel)]="selectedTimeRange"
+          [ngModelOptions]="{standalone: true}"
+          (selectionChange)="onTimeRangeChange($event.value)">
+          <mat-select-trigger>
+            {{ timeRangeDisplay }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let option of timeRangeOptions" [value]="option.value">
+            {{ option.labelKey | translate: option.labelParams }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="telemetry-body">
+      <div *ngIf="selectedTelemetryKeys.length === 0" class="telemetry-placeholder">
+        <div class="no-data-container">
+          <mat-icon class="no-data-icon">timeline</mat-icon>
+          <span class="no-data-text">{{ 'device.telemetry-keys-required' | translate }}</span>
+        </div>
+      </div>
+      <div *ngIf="selectedTelemetryKeys.length > 0" class="charts-grid">
+        <tb-dashboard
+          [aliasController]="aliasController"
+          [stateController]="stateController"
+          [dashboardTimewindow]="dashboardTimewindow"
+          [widgets]="widgets"
+          [autofillHeight]="true"
+          [mobileAutofillHeight]="true"
+          [columns]="24"
+          [isEdit]="false"
+          [isPreview]="false"
+          [isMobileDisabled]="true"
+          [isEditActionEnabled]="false"
+          [isRemoveActionEnabled]="false">
+        </tb-dashboard>
+      </div>
+    </div>
   </div>
 </div>
+
+<ng-template #customTimeRangeDialog>
+  <h2 mat-dialog-title>{{ 'timewindow.date-range' | translate }}</h2>
+  <mat-dialog-content>
+    <div class="custom-range-form" *ngIf="customRangeDraft">
+      <tb-datetime
+        class="custom-range-field"
+        [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="customRangeDraft.startTimeMs"
+        dateText="{{ 'timewindow.start-time' | translate }}"
+        appearance="fill">
+      </tb-datetime>
+      <tb-datetime
+        class="custom-range-field"
+        [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="customRangeDraft.endTimeMs"
+        dateText="{{ 'timewindow.end-time' | translate }}"
+        appearance="fill">
+      </tb-datetime>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancelCustomRange()">
+      {{ 'action.cancel' | translate }}
+    </button>
+    <button mat-flat-button color="primary" type="button"
+            (click)="confirmCustomRange()"
+            [disabled]="!isCustomRangeValid(customRangeDraft)">
+      {{ 'action.apply' | translate }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>
 
 <ng-template #widgetTitlePanel>
 </ng-template>

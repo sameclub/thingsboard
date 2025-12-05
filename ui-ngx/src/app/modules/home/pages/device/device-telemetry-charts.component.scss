@@ -13,11 +13,75 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- .telemetry-charts-container {
+.telemetry-charts-container {
+  display: flex;
+  flex-direction: column;
   padding: 16px;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 }
+
+.telemetry-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.telemetry-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.telemetry-placeholder {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 8px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.telemetry-placeholder .no-data-container {
+  width: 100%;
+  height: 100%;
+}
+
+.custom-range-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.custom-range-field {
+  width: 100%;
+}
+.telemetry-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.telemetry-controls mat-form-field {
+  flex: 0 0 auto;
+}
+
+.time-range-field {
+  width: 180px;
+  max-width: 100%;
+}
+
+.telemetry-select-field {
+  flex: 1 1 320px;
+  min-width: 240px;
+}
+
 
 .loading-container {
   display: flex;
@@ -55,29 +119,32 @@
 }
 
 .charts-grid {
-  padding: 8px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 0;
 }
 
-.chart-container {
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  min-height: 300px;
-  overflow: hidden;
-}
+:host ::ng-deep .charts-grid {
+  tb-dashboard,
+  tb-dashboard .tb-dashboard-content,
+  tb-dashboard #gridster-child,
+  tb-dashboard #gridster-background,
+  tb-dashboard gridster,
+  tb-dashboard gridster-item {
+    background: transparent !important;
+  }
 
-.chart-container tb-widget {
-  display: block;
-  height: 100%;
+  tb-dashboard {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    display: block;
+  }
 }
 
 @media (max-width: 768px) {
   .charts-grid {
     padding: 8px;
-  }
-
-  .chart-container {
-    min-height: 250px;
   }
 }
